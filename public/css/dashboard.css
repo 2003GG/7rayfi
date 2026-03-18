@@ -1,0 +1,74 @@
+body { font-family: 'DM Sans', sans-serif; }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .gold-bar {
+      background: linear-gradient(90deg, transparent, #c9a84c 35%, #e8c97a 50%, #c9a84c 65%, transparent);
+      height: 1px;
+    }
+
+    /* Profile banner hatching */
+    .profile-banner-hatch {
+      background: linear-gradient(135deg, #1a1000 0%, #3d2b00 50%, #1a1000 100%);
+      position: relative;
+    }
+    .profile-banner-hatch::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(201,168,76,0.07) 8px, rgba(201,168,76,0.07) 9px);
+    }
+
+    /* Shimmer gold button */
+    .btn-gold-shine {
+      background: linear-gradient(90deg, #c9a84c 0%, #e8c97a 50%, #c9a84c 100%);
+      background-size: 200% 100%;
+      transition: background-position 0.4s ease, box-shadow 0.3s ease;
+    }
+    .btn-gold-shine:hover {
+      background-position: -100% 0;
+      box-shadow: 0 0 22px rgba(201,168,76,0.45);
+    }
+
+    /* Post card hover glow */
+    .post-card {
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .post-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(201,168,76,0.06), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+    .post-card:hover::before { opacity: 1; }
+    .post-card:hover { border-color: rgba(201,168,76,0.35) !important; box-shadow: 0 4px 20px rgba(201,168,76,0.1); }
+
+    /* Liked state */
+    .liked-btn svg { stroke: #c9a84c; fill: rgba(201,168,76,0.15); }
+    .liked-btn { color: #c9a84c !important; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0b0c10; }
+    ::-webkit-scrollbar-thumb { background: #2a2c34; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,0.35); }
+
+    input::placeholder, textarea::placeholder { color: #3a3c44; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: rgba(201,168,76,0.5) !important; }
+    select option { background: #1a1d24; }
+
+    @media (max-width: 1024px) { .right-col { display: none; } }
+    @media (max-width: 768px) { .left-col { display: none; } }

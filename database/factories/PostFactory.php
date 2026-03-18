@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
 /**
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
  */
 class PostFactory extends Factory
 {
+    use HasFactory;
     /**
      * Define the model's default state.
      *

@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('Title');
-            $table->string('Description');
-            $table->date('Start_date');
-            $table->date('End_date');
-            $table->string('location')->nullable();
+            $table->string('title');
+            $table->text('description');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->text('location')->nullable();
+            $table->string('photo')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

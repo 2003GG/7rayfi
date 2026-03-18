@@ -23,8 +23,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'role_id',
-        'departement_id',
         'email',
+        'status',
         'password',
     ];
 
@@ -59,7 +59,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-      public function order()
+      public function orders()
     {
         return $this->hasMany(Order::class);
     }

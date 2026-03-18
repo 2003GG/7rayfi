@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
-            $table->string('description');
+            $table->text('description');
+            $table->foreignId('order_id')->default(null)->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
