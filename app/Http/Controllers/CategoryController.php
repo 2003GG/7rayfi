@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -12,15 +14,19 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('post.index');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $validate=$request->validated();
+
+        $category=Category::create($validate);
+        return redirect()->route('category.index');
+
     }
 
     /**
@@ -34,9 +40,13 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request,$id)
     {
-        //
+        $validate=$request->validated();
+
+        $category=Category::findOrFail($id);
+        $category->update($validate);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -44,6 +54,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category=Category::findOrFail($id);
+        $category->delete();
+        return redirect()->route('category.index');
     }
 }
+

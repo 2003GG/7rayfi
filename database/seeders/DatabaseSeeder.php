@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CoursSeeder::class,
             OrderSeeder::class,
             PostSeeder::class,
+            CategorySeeder::class,
         ]);
 
 
@@ -40,7 +41,7 @@ class DatabaseSeeder extends Seeder
             'status'=>'client',
         ]);
         User::factory(20)->create([
-           
+
             'role_id'=>2,
             ]);
 

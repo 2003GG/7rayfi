@@ -24,6 +24,7 @@ class PostFactory extends Factory
            'title'=>fake()->name(),
            'photo_URL'=>fake()->url(),
            'description'=>fake()->realText(),
+           'category_id'=>fake()->numberBetween(0,12),
            'user_id'=>fake()->numberBetween(1,20),
 
         ];

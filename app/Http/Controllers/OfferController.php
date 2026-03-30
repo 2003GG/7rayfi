@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use App\Http\Requests\OfferRequest;
 
 class OfferController extends Controller
 {
@@ -27,17 +28,9 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
-        $validate=$request->validate([
-            'user_id'=>'required|exists:users,id',
-            'title'=>'required|string|max:255',
-            'photo'=>'nullable|string|max:255',
-            'start_date'=>'required|date',
-            'end_date'=>'required|date|after:start_date',
-            'location'=>'required|string|max:255',
-            'description'=>'nullable|string',
-        ]);
+        $validate=$request->validated();
 
         $offer = Offer::create($validate);
         return redirect()->route('offer.index');
@@ -64,17 +57,9 @@ class OfferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(OfferRequest $request,$id)
     {
-        $validate=$request->validate([
-            'user_id'=>'required|exists:users,id',
-            'title'=>'required|string|max:255',
-            'photo'=>'nullable|string|max:255',
-            'start_date'=>'required|date',
-            'end_date'=>'required|date|after:start_date',
-            'location'=>'required|string|max:255',
-            'description'=>'nullable|string',
-        ]);
+        $validate=$request->validated();
 
         $offer=Offer::findOrFail($id);
         $offer->update($validate);

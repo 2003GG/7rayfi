@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('Article');
             $table->string('url')->nullable();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('category_id')->default(null)->constrained();
             $table->timestamps();
         });
     }

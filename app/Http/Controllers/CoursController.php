@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CoursRequest;
 use Illuminate\Http\Request;
 use App\Models\Cours;
 
@@ -12,8 +13,8 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours=Cours::all();
-        return view('Cours'.compact('cours'));
+        $courses=Cours::all();
+        return view('cours',compact('courses'));
     }
 
     /**
@@ -27,14 +28,9 @@ class CoursController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CoursRequest $request)
     {
-        $validate=$request->validate([
-            'user_id'=>'required|exists:users,id',
-            'Title'=>'required|string|max:255',
-            'Article'=>'nullable|string',
-            'url'=>'nullable|string|max:255',
-        ]);
+        $validate=$request->validated();
 
         $cours=Cours::create($validate);
         return redirect()->route('cours.index');

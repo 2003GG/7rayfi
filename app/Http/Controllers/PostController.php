@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use App\Models\Category;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -12,31 +14,29 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
-        return view('dashboard',compact('posts'));
+    $posts    = Post::all();
+    $categorys = Category::all();
+    return view('dashboard', compact('posts', 'categorys'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    // public function create(Request $request)
-    // {
-    //     return view('Post.create');
-    // }
+    public function create(Request $request)
+    {
+        return view('Post.create');
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-            $validate=$request->validate([
-        'title'=>'required|string|max:255',
-        'photo_URL'=>'nullable|string|max:255',
-        'description'=>'nullable|string',
-        'user_id'=>auth()->user()->id,
-        ]);
+            $validate=$request->validated();
 
-        $post=Post::create($validate);
+        $post = Post::create(array_merge($validate, ['user_id' => auth()->user()->id]));
+
+
         return redirect()->route('post.index');
     }
 
@@ -52,7 +52,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
         return view('Post.edit');
     }
@@ -60,13 +60,12 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
         $validate=$request->validate([
             'title'=>'required|string|max:255',
             'photo_URL'=>'nullable|string|max:255',
             'description'=>'nullable|string',
-            'user_id'=>'required|exists:users,id',
             ]);
 
             $post=Post::findOrFail($id);

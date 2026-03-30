@@ -63,12 +63,7 @@ class ProductController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $validate=$request->validate([
-            'name'=>'required|string|max:255',
-            'description'=>'nullable|string',
-            'price'=>'required|numeric',
-            'order_id'=>'required|exists:orders,id',
-        ]);
+        $validate=$request->validated();
 
         $product=Product::findOrFail($id);
         $product->update($validate);

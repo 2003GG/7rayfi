@@ -20,6 +20,7 @@ class CoursFactory extends Factory
             'user_id'=>fake()->numberBetween(0,10),
             'Title'=>fake()->name(),
             'Article'=>fake()->text(),
+            'category_id'=>fake()->numberBetween(0,12),
             'url'=>fake()->url(),
         ];
     }

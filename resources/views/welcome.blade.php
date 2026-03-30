@@ -88,10 +88,10 @@
             </div>
 
             <h1 class="hero-title">
-                Build Your<br>
-                <span class="line-gold">Career.</span>
-                <span class="line-accent">Connect.</span><br>
-                Grow.
+                the artisan<br>
+                <span class="line-gold"> free environment</span>
+                <span class="line-accent">7erayfi</span><br>
+
             </h1>
 
             <p class="hero-sub">
@@ -99,7 +99,7 @@
             </p>
 
             <div class="hero-ctas">
-                <a href="/register" class="btn-hero btn-hero-primary">Start for free →</a>
+                <a href="{{ route('signup') }}" class="btn-hero btn-hero-primary">Start for free →</a>
                 <a href="#features" class="btn-hero btn-hero-outline">Explore the platform</a>
             </div>
 

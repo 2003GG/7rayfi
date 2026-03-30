@@ -41,7 +41,7 @@
 <div class="flex min-h-screen relative z-10">
 
     {{-- SIDEBAR --}}
-@include('sidebar')
+
 
     {{-- MAIN CONTENT --}}
     <main class="flex-1 flex items-center justify-center p-6 md:p-12">
@@ -84,12 +84,12 @@
                 <div class="bg-red-950/40 border border-red-700/40 rounded-xl p-3 mb-5 text-sm text-red-300">{{ session('error') }}</div>
                 @endif
 
-                <form method="POST" action="{{ route('login') }}" id="loginForm">
+                <form method="POST" action="{{ route('user.login') }}" id="loginForm">
                     @csrf
                     {{-- Email --}}
                     <div class="mb-4">
                         <label class="block text-[11px] font-medium text-gray-500 uppercase tracking-[0.1em] mb-2">Email Address</label>
-                        <input type="email" name="email" value="{{ old('email') }}" autocomplete="email" placeholder="you@example.com" required
+                        <input type="email" name="email" value="" autocomplete="email" placeholder="you@example.com" required
                             class="w-full bg-surface2 border @error('email') border-red-600/50 @else border-white/[0.07] @enderror rounded-xl px-4 py-3 text-sm text-gray-200 transition-all duration-200 hover:border-gold/30">
                     </div>
                     {{-- Password --}}
@@ -107,13 +107,7 @@
                         </div>
                     </div>
                     {{-- Remember / Forgot --}}
-                    <div class="flex items-center justify-between mb-6">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} class="w-4 h-4 rounded accent-gold bg-surface2 border-white/10">
-                            <span class="text-sm text-gray-500">Remember me</span>
-                        </label>
-                        <a href="" class="text-sm text-gold font-semibold hover:text-gold-light transition-colors">Forgot password?</a>
-                    </div>
+
                     {{-- Submit --}}
                     <button type="submit" id="submitBtn"
                         class="w-full bg-gold text-ink font-syne font-bold text-sm uppercase tracking-[0.07em] py-3.5 rounded-xl transition-all duration-200 hover:bg-gold-light hover:-translate-y-px hover:shadow-[0_6px_24px_rgba(201,168,76,0.3)] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">

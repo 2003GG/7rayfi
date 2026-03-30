@@ -8,13 +8,17 @@ class Demande extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'user_id',
+        'sender_id',
+        'receiver_id',
         'title',
         'description',
         'offer_id',
     ];
     public function sender(){
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class,'sender_id');
+    }
+    public function receiver(){
+        return $this->belongsTo(User::class,'receiver_id');
     }
     public function offer(){
         return $this->belongsTo(Offer::class,'offer_id');

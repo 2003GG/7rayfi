@@ -2,9 +2,9 @@
     <div class="max-w-[1280px] mx-auto px-5 h-14 flex items-center justify-between gap-4">
 
       <!-- Logo -->
-      <a href="#" class="font-syne font-extrabold text-xl tracking-tight flex items-center gap-1">
-        <span class="text-gold">7</span><span class="text-[#e8e6e0]">RAYFI</span>
-      </a>
+      <a href="#" class="flex items-center">
+        <img src="{{ asset('image/logo.png') }}" alt="7RAYFI Logo" class="h-20 w-20 object-contain" />
+        </a>
 
       <!-- Search -->
       <div class="relative flex-1 max-w-[260px]">
@@ -14,7 +14,7 @@
 
       <!-- Nav -->
       <nav class="flex items-center gap-0.5">
-        <a href="{{route('post.index')}}" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-gold text-[10px] font-dm font-medium">
+        <a href="{{ route('post.index') }}" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-gold text-[10px] font-dm font-medium">
           <svg class="w-5 h-5" fill="none" stroke="#c9a84c" stroke-width="1.6" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           Home
         </a>
@@ -26,6 +26,25 @@
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           Network
         </a>
+
+        <!-- Courses -->
+        <a href="{{ route('cours.index') }}" class="flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-[#7a7870] hover:text-[#e8e6e0] hover:bg-surface2 transition-all duration-200 text-[10px] font-dm font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          Courses
+        </a>
+
+        <!-- Orders -->
+        <a href="" class="relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-[#7a7870] hover:text-[#e8e6e0] hover:bg-surface2 transition-all duration-200 text-[10px] font-dm font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Orders
+        </a>
+
+        <!-- Demande -->
+        <a href="" class="relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-[#7a7870] hover:text-[#e8e6e0] hover:bg-surface2 transition-all duration-200 text-[10px] font-dm font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          Demande
+        </a>
+
         <a href="#" class="relative flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl text-[#7a7870] hover:text-[#e8e6e0] hover:bg-surface2 transition-all duration-200 text-[10px] font-dm font-medium">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
           <span class="absolute top-1 right-1.5 w-1.5 h-1.5 bg-red-500 rounded-full border border-surface"></span>
@@ -43,4 +62,4 @@
       </nav>
     </div>
     <div class="gold-bar opacity-50"></div>
-  </header>
+</header>

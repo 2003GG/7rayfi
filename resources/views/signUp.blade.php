@@ -41,7 +41,7 @@
 <div class="flex min-h-screen relative z-10">
 
     {{-- SIDEBAR --}}
-  @include('sidebar')
+
 
     {{-- MAIN CONTENT --}}
     <main class="flex-1 flex items-center justify-center p-6 md:p-12 py-10">

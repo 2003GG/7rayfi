@@ -13,11 +13,15 @@ class Product extends Model
     protected $fillable=[
         'name',
         'price',
-        'description'
+        'description',
+        'category_id',
     ];
 
             public function order()
     {
         return $this->hasMany(Order::class);
+    }
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 }
