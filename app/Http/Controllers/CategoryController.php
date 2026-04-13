@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return redirect()->route('post.index');
+        $categorys=Category::all();
+        return view('category',compact('categorys'));
     }
 
     /**
@@ -22,9 +23,9 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+         $this->authorize('create',Category::class);
         $validate=$request->validated();
-
-        $category=Category::create($validate);
+        Category::create($validate);
         return redirect()->route('category.index');
 
     }
@@ -52,9 +53,10 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $category=Category::findOrFail($id);
+        $this->authorize('delete',$category);
         $category->delete();
         return redirect()->route('category.index');
     }

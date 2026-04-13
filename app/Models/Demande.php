@@ -10,8 +10,6 @@ class Demande extends Model
     protected $fillable=[
         'sender_id',
         'receiver_id',
-        'title',
-        'description',
         'offer_id',
     ];
     public function sender(){

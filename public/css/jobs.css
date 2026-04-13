@@ -1,4 +1,7 @@
-body { font-family: 'DM Sans', sans-serif; }
+body {
+    background-image: url('/image/arabic.jpg');
+    font-family: 'DM Sans', sans-serif;
+ }
 
     /* Noise texture overlay */
     body::before {

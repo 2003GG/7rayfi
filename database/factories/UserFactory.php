@@ -29,6 +29,8 @@ class UserFactory extends Factory
             'role_id'=>fake()->numberBetween(1,4),
             'email_verified_at' => now(),
             'status'=>fake()->randomElement(['client','artisan']),
+            'condition'=>fake()->randomElement(['blocke','deblocke']),
+            'phone_number'=>fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];

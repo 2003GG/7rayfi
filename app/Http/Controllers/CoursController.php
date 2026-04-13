@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CoursRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Cours;
+use Pest\Mutate\Mutators\Number\DecrementFloat;
 
 class CoursController extends Controller
 {
@@ -13,8 +15,9 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $courses=Cours::all();
-        return view('cours',compact('courses'));
+        $courses=Cours::orderBy('id','DESC')->get();
+        $categorys=Category::all();
+        return view('cours',compact('courses','categorys'));
     }
 
     /**
@@ -30,9 +33,14 @@ class CoursController extends Controller
      */
     public function store(CoursRequest $request)
     {
-        $validate=$request->validated();
-
-        $cours=Cours::create($validate);
+        $data=$request->validated();
+         if ($request->hasFile('url')) {
+        $filename = time() . '.' . $request->file('url')->getClientOriginalExtension();
+        $request->file('photo_URL')->move(public_path('image'), $filename);
+        $data['url'] = $filename;
+    }
+        Cours::create($data);
+        auth()->user()->increment('solde', 10);
         return redirect()->route('cours.index');
     }
 
@@ -57,16 +65,12 @@ class CoursController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(CoursRequest $request,$id)
     {
-        $validate=$request->validate([
-            'user_id'=>'required|exists:users,id',
-            'Title'=>'required|string|max:255',
-            'Article'=>'nullable|string',
-            'url'=>'nullable|string|max:255',
-        ]);
+        $validate=$request->validated();
 
         $cours=Cours::findOrFail($id);
+        $this->authorize('update',$cours);
         $cours->update($validate);
         return redirect()->route('cours.index');
     }
@@ -77,6 +81,7 @@ class CoursController extends Controller
     public function destroy($id)
     {
         $cours=Cours::findOrFail($id);
+        $this->authorize('delete',$cours);
         $cours->delete();
         return redirect()->route('cours.index');
     }

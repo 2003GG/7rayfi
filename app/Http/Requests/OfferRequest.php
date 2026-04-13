@@ -22,13 +22,14 @@ class OfferRequest extends FormRequest
     public function rules(): array
     {
         return [
-             'user_id'=>'required|exists:users,id',
             'title'=>'required|string|max:255',
-            'photo'=>'nullable|string|max:255',
+            'photo'=>'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'start_date'=>'required|date',
             'end_date'=>'required|date|after:start_date',
-            'location'=>'required|string|max:255',
+            'ville'=>'required|string|max:255',
+            'salaire'=>'nullable|numeric',
             'description'=>'nullable|string',
+
         ];
     }
 }

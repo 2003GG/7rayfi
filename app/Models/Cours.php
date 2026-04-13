@@ -11,8 +11,8 @@ class Cours extends Model
     use HasFactory;
  protected $fillable=[
     'user_id',
-    'Title',
-    'Article',
+    'title',
+    'article',
     'url',
     'category_id'
  ];

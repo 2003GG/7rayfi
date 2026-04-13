@@ -25,9 +25,10 @@ class OfferFactory extends Factory
             'description'=>fake()->text(),
             'start_date'=>fake()->date(),
             'end_date'=>fake()->date(),
-            'location'=>fake()->address(),
             'photo'=>fake()->url(),
             'user_id'=>fake()->numberBetween(0,10),
+            'salaire'=>fake()->numberBetween(0,12),
+            'ville'=>fake()->city(),
         ];
     }
 }

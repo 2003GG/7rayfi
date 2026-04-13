@@ -42,7 +42,6 @@
 
     {{-- SIDEBAR --}}
 
-
     {{-- MAIN CONTENT --}}
     <main class="flex-1 flex items-center justify-center p-6 md:p-12">
         <div class="w-full max-w-5xl grid md:grid-cols-2 gap-16 items-center">

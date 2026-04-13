@@ -45,7 +45,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $product): bool
     {
-        return $user->id === $product->user_id || $user->role === 'admin';
+        return $user->id == $product->user_id || $user->role_id ==1;
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductPolicy
      */
     public function restore(User $user, Product $product): bool
     {
-        return $user->id === $product->user_id ;
+        return $user->id == $product->user_id ;
     }
 
     /**
@@ -61,6 +61,6 @@ class ProductPolicy
      */
     public function forceDelete(User $user, Product $product): bool
     {
-        return $user->role === 'admin';
+        return $user->role_id ==1;
     }
 }

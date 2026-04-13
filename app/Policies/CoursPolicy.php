@@ -45,7 +45,7 @@ class CoursPolicy
      */
     public function delete(User $user, Cours $cours): bool
     {
-        return $user->id === $cours->user_id || $user->role === 'admin';
+        return $user->id === $cours->user_id || $user->role_id == 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class CoursPolicy
      */
     public function restore(User $user, Cours $cours): bool
     {
-        return $user->id === $cours->user_id || $user->role === 'admin';
+        return $user->id === $cours->user_id || $user->role_id == 1;
     }
 
     /**
@@ -61,6 +61,6 @@ class CoursPolicy
      */
     public function forceDelete(User $user, Cours $cours): bool
     {
-        return $user->role === 'admin';
+        return  $user->role_id == 1;
     }
 }

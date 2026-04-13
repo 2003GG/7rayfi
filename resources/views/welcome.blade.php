@@ -91,6 +91,7 @@
                 the artisan<br>
                 <span class="line-gold"> free environment</span>
                 <span class="line-accent">7erayfi</span><br>
+                <!-- <img src="{{ asset('image/download (3).jpg') }}" alt=""> -->
 
             </h1>
 

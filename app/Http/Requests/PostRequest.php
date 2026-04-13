@@ -23,7 +23,7 @@ class PostRequest extends FormRequest
     {
         return [
         'title'=>'required|string|max:255',
-        'photo_URL'=>'nullable|string|max:255',
+        'photo_URL'=>'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         'video_URL'=>'nullable|string|max:255',
         'description'=>'nullable|string',
         ];

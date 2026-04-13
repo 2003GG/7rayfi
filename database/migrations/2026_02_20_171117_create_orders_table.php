@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date_of_order');
             $table->foreignId('user_id')->constrained();
+            $table->enum('status',['waiting','canceld','active'])->default('waiting');
             $table->timestamps();
         });
     }

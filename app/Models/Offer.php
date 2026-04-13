@@ -15,8 +15,9 @@ class Offer extends Model
         'photo',
         'start_date',
         'end_date',
-        'location',
         'description',
+        'ville',
+        'salaire',
 
 
     ];

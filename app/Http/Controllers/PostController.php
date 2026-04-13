@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use Pest\Mutate\Mutators\Number\DecrementInteger;
 
 class PostController extends Controller
 {
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-    $posts    = Post::all();
+    $posts = Post::orderBy('id', 'DESC')->get();
     $categorys = Category::all();
     return view('dashboard', compact('posts', 'categorys'));
     }
@@ -24,21 +25,26 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
-        return view('Post.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(PostRequest $request)
-    {
-            $validate=$request->validated();
+{
+    $data = $request->validated();
 
-        $post = Post::create(array_merge($validate, ['user_id' => auth()->user()->id]));
-
-
-        return redirect()->route('post.index');
+    if ($request->hasFile('photo_URL')) {
+        $filename = time() . '.' . $request->file('photo_URL')->getClientOriginalExtension();
+        $request->file('photo_URL')->move(public_path('image'), $filename);
+        $data['photo_URL'] = $filename;
     }
+
+    Post::create(array_merge($data, ['user_id' => auth()->user()->id]));
+    auth()->user()->increment('solde',8);
+
+    return redirect()->route('post.index');
+}
 
     /**
      * Display the specified resource.
@@ -53,22 +59,21 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit($id)
-    {
-        return view('Post.edit');
-    }
+{
+    $post = Post::findOrFail($id);
+    $this->authorize('update', $post);
+    return view('Post.edit', compact('post'));
+}
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(PostRequest $request,$id)
     {
-        $validate=$request->validate([
-            'title'=>'required|string|max:255',
-            'photo_URL'=>'nullable|string|max:255',
-            'description'=>'nullable|string',
-            ]);
+        $validate=$request->validated();
 
             $post=Post::findOrFail($id);
+            $this->authorize('update',$post);
             $post->update($validate);
             return redirect()->route('post.index');
     }
@@ -76,10 +81,18 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         $post=Post::findOrFail($id);
+        $this->authorize('delete',$post);
         $post->delete();
+        return redirect()->route('post.index');
+    }
+    public function report($id){
+        $post=Post::findOrFail($id);
+        $post->update([
+            'report_count'=>$post->report_count + 1,
+        ]);
         return redirect()->route('post.index');
     }
 }

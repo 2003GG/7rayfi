@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -13,7 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         $products=Product::all();
-        return view('Product'.compact('products'));
+        $categorys=Category::all();
+        return view('Products',compact('products','categorys'));
     }
 
     /**
@@ -27,16 +30,12 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $validate=$request->validate([
-            'name'=>'required|string|max:255',
-            'description'=>'nullable|string',
-            'price'=>'required|numeric',
-            'order_id'=>'required|exists:orders,id',
-        ]);
+        $validate=$request->validated();
 
-        $product=Product::create($validate);
+      Product::create($validate);
+        auth()->user()->increment('solde',5);
         return redirect()->route('product.index');
     }
 
@@ -55,6 +54,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product=Product::findOrFail($id);
+        $this->authorize('update',$product);
         return view('Product.edit',compact('product'));
     }
 
@@ -66,6 +66,7 @@ class ProductController extends Controller
         $validate=$request->validated();
 
         $product=Product::findOrFail($id);
+        $this->authorize('update',$product);
         $product->update($validate);
         return redirect()->route('product.index');
     }
@@ -76,7 +77,18 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product=Product::findOrFail($id);
+        $this->authorize('delete',$product);
         $product->delete();
         return redirect()->route('product.index');
+    }
+
+    public function AcheteProduct($id){
+        $product=Product::findOrFail($id);
+        if($product->price > auth()->user()->solde){
+        return redirect()->route('products.index')->with('You cant buy this product');
+        }
+        auth()->user()->increment('solde',$product->price);
+        $product->decrement('quantite',1);
+            return redirect()->route('products.index');
     }
 }

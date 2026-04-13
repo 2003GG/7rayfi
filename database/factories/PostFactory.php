@@ -26,7 +26,7 @@ class PostFactory extends Factory
            'description'=>fake()->realText(),
            'category_id'=>fake()->numberBetween(0,12),
            'user_id'=>fake()->numberBetween(1,20),
-
+            'report_count'=>0,
         ];
     }
 }

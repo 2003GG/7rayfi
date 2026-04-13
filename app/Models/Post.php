@@ -16,6 +16,7 @@ class Post extends Model
         'description',
         'user_id',
         'category_id',
+        'report_count',
     ];
          public function user()
     {

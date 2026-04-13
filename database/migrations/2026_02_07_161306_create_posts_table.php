@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('photo_URL')->nullable();
             $table->string('video_URL')->nullable();
+            $table->integer('report_count')->default(0);
             $table->foreignId('category_id')->nullable()->constrained();
             $table->timestamps();
         });

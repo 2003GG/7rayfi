@@ -17,8 +17,10 @@ return new class extends Migration
             $table->text('description');
             $table->date('start_date');
             $table->date('end_date');
-            $table->text('location')->nullable();
             $table->string('photo')->nullable();
+            $table->string('ville')->nullable();
+            $table->float('salaire')->nullable();
+            $table->enum('status',['disponible','urgent','indisponible'])->default('disponible');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

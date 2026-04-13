@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\auth;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SingupRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use PhpParser\Node\Stmt\Block;
 
 class AuthController extends Controller
 {
@@ -22,17 +25,14 @@ class AuthController extends Controller
     }
 
 
-    public function signUp(Request $request)
+    public function signUp(SingupRequest $request)
     {
-        $validated = $request->validate([
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'name'     => $validated['name'],
             'email'    => $validated['email'],
+            'condition'=>'deblocke',
             'role_id'  =>2,
             'password' => Hash::make($validated['password']),
         ]);
@@ -45,23 +45,24 @@ class AuthController extends Controller
             ->with('success', 'Account created successfully');
     }
 
-    public function logIn(Request $request)
-    {
-        $validated = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required|string',
-        ]);
+    public function logIn(LoginRequest $request)
+{
+    $validated = $request->validated();
 
-        if (!Auth::attempt($validated, $request->boolean('remember'))) {
-            return back()
-                ->withErrors(['email' => 'Invalid email or password'])
-                ->withInput($request->only('email'));
-        }
-
-        $request->session()->regenerate();
-
-        return redirect()->intended('/dashboard');
+    // Attempt login
+    if (!Auth::attempt($validated, $request->boolean('remember'))) {
+        return back()
+            ->withErrors(['email' => 'Invalid email or password'])
+            ->withInput($request->only('email'));
     }
+
+    $user = Auth::user();
+
+
+    $request->session()->regenerate();
+
+    return redirect()->intended('/dashboard');
+}
 
     public function signOut(Request $request)
     {
