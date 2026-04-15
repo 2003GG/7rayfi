@@ -12,12 +12,19 @@ class OfferController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $offers=Offer::orderBy('id','ASC')->get();
-        $categorys=Category::all();
-        return view('offer',compact('offers','categorys'));
+   public function index()
+{
+    $offers = Offer::all();
+
+    foreach ($offers as $offer) {
+        if ($offer->end_date < now()) {
+            $offer->update(['status' => 'indisponible']);
+        }
     }
+
+    $categorys = Category::all();
+    return view('offer', compact('offers','categorys'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -31,17 +38,23 @@ class OfferController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(OfferRequest $request)
-    {
-        $data=$request->validated();
-            if ($request->hasFile('photo')) {
+{
+    $data = $request->validated();
+
+    if ($request->hasFile('photo')) {
         $filename = time() . '.' . $request->file('photo')->getClientOriginalExtension();
         $request->file('photo')->move(public_path('image'), $filename);
         $data['photo'] = $filename;
     }
-        Offer::create(array_merge($data,['user_id'=>auth()->user()->id]));
-        auth()->user()->increment('solde',15);
-        return redirect()->route('offer.index');
-    }
+
+    Offer::create(array_merge($data, [
+        'user_id' => auth()->user()->id,
+        'status'  => 'disponible', 
+    ]));
+
+    auth()->user()->increment('solde', 15);
+    return redirect()->route('offer.index');
+}
 
     /**
      * Display the specified resource.

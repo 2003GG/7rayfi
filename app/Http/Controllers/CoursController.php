@@ -6,7 +6,6 @@ use App\Http\Requests\CoursRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Cours;
-use Pest\Mutate\Mutators\Number\DecrementFloat;
 
 class CoursController extends Controller
 {
@@ -25,24 +24,28 @@ class CoursController extends Controller
      */
     public function create()
     {
-        return view('Cours.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(CoursRequest $request)
-    {
-        $data=$request->validated();
-         if ($request->hasFile('url')) {
+{
+    $user = auth()->user();
+    $data = $request->validated();
+
+    if ($request->hasFile('url')) {
         $filename = time() . '.' . $request->file('url')->getClientOriginalExtension();
-        $request->file('photo_URL')->move(public_path('image'), $filename);
+        $request->file('url')->move(public_path('image'), $filename);
         $data['url'] = $filename;
     }
-        Cours::create($data);
-        auth()->user()->increment('solde', 10);
-        return redirect()->route('cours.index');
-    }
+
+    Cours::create(array_merge($data, ['user_id' => $user->id]));
+    $user->increment('solde', 10);
+
+    return redirect()->route('cours.index');
+}
 
     /**
      * Display the specified resource.

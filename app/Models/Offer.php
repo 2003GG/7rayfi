@@ -18,6 +18,9 @@ class Offer extends Model
         'description',
         'ville',
         'salaire',
+        'status',
+        'category_id',
+
 
 
     ];
@@ -27,5 +30,8 @@ class Offer extends Model
 
     public function demandes(){
         return $this->hasMany(Demande::class);
+}
+    public function category(){
+    return $this->belongsTo(Category::class);
 }
 }

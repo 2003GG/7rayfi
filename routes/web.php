@@ -63,6 +63,7 @@ Route::middleware(['auth','deblocke'])->group(function () {
 
     Route::get('/cours',[CoursController::class,    'index'])->name('cours.index');
     Route::post('/cours',[CoursController::class,    'store'])->name('cours.store');
+    Route::get('/cours/{id}',[CoursController::class,    'show'])->name('cours.show');
 
 
 

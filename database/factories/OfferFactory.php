@@ -21,10 +21,10 @@ class OfferFactory extends Factory
     {
         return [
 
-             'title'=>fake()->name(),
+            'title'=>fake()->name(),
             'description'=>fake()->text(),
-            'start_date'=>fake()->date(),
-            'end_date'=>fake()->date(),
+            'start_date' => fake()->dateTimeBetween('2025-11-02', '2025-11-20'),
+            'end_date'=>fake()->dateTimeBetween('2026-4-15', '2026-10-22'),
             'photo'=>fake()->url(),
             'user_id'=>fake()->numberBetween(0,10),
             'salaire'=>fake()->numberBetween(0,12),

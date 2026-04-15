@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('order_id')->default(null)->constrained()->nullOnDelete();
             $table->foreignId('category_id')->default(null)->constrained();
             $table->integer('quantite');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

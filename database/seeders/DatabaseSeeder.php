@@ -39,10 +39,12 @@ class DatabaseSeeder extends Seeder
             'role_id'=>1,
             'email' => 'admin@example.com',
             'status'=>'client',
+            'condition'=>'deblocke'
         ]);
         User::factory(20)->create([
 
             'role_id'=>2,
+            'condition'=>'deblocke',
             ]);
 
         Role::factory()->create(

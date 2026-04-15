@@ -22,7 +22,6 @@ class CoursRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=>'required|exists:users,id',
             'Title'=>'required|string|max:255',
             'Article'=>'nullable|string',
             'url'=>'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',

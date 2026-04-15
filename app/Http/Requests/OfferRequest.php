@@ -29,6 +29,7 @@ class OfferRequest extends FormRequest
             'ville'=>'required|string|max:255',
             'salaire'=>'nullable|numeric',
             'description'=>'nullable|string',
+            'category_id' => 'required|exists:categories,id', 
 
         ];
     }

@@ -282,7 +282,7 @@
             </div>
           </div>
           <p style="font-size:13px; color:var(--ink-dim); line-height:1.7; margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-            {{ $course->article ?? 'Découvrez les techniques ancestrales de l\'artisanat marocain avec ce cours complet.' }}
+            {{ strtoupper(substr($course->article, 0,400))?? 'Découvrez les techniques ancestrales de l\'artisanat marocain avec ce cours complet.' }}
           </p>
         </div>
         <div style="margin-top:14px;">
@@ -299,7 +299,9 @@
                 <span style="font-size:11px; color:var(--ink-muted);">300 étudiants</span>
               </div>
             </div>
-            <button class="btn-apply">Voir le cours →</button>
+            <form action="{{ route('cours.show',$course->id) }}">
+            <button type="submit" class="btn-apply">Voir le cours →</button>
+            </form>
           </div>
         </div>
       </div>

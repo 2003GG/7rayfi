@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('ville')->nullable();
             $table->float('salaire')->nullable();
-            $table->enum('status',['disponible','urgent','indisponible'])->default('disponible');
+            $table->enum('status',['disponible','indisponible'])->nullable()->default('disponible');
+            $table->foreignId('category_id')->nullable()->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

@@ -254,10 +254,6 @@
           <label class="filter-section-title" style="display:block; margin-bottom:6px;">Prix (MAD) *</label>
           <input type="number" name="price" required min="0" class="filter-input" placeholder="Ex: 850" />
         </div>
-        <div>
-          <label class="filter-section-title" style="display:block; margin-bottom:6px;">Ancien prix (MAD)</label>
-          <input type="number" name="old_price" min="0" class="filter-input" placeholder="Optionnel" />
-        </div>
       </div>
 
       <!-- Description -->
@@ -280,17 +276,7 @@
       </div>
 
       <!-- Availability -->
-      <div>
-        <label class="filter-section-title" style="display:block; margin-bottom:8px;">Disponibilité</label>
-        <div style="display:flex; gap:12px;">
-          <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:13px; color:var(--ink-dim);">
-            <input type="radio" name="availability" value="stock" class="filter-check" checked /> En stock
-          </label>
-          <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-size:13px; color:var(--ink-dim);">
-            <input type="radio" name="availability" value="commande" class="filter-check" /> Sur commande
-          </label>
-        </div>
-      </div>
+   
 
       <!-- Footer buttons -->
       <div style="display:flex; gap:10px; padding-top:4px; border-top:1px solid var(--border); margin-top:4px;">

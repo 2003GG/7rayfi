@@ -45,6 +45,15 @@
     .btn-gradient { background: linear-gradient(135deg, #c1440e, #e8a020); }
     .offer-logo-gradient { background: linear-gradient(135deg, #c1440e, #e8a020); }
     .urgent-dot { width: 6px; height: 6px; border-radius: 50%; background: #e8a020; animation: pulse2 2s infinite; }
+    .disponible-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #16a34a; 
+    animation: pulse2 2s infinite;
+}
+.indisponible-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #dc2626;
+}
     @keyframes pulse2 { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
   </style>
 </head>
@@ -99,17 +108,29 @@
       <div class="flex items-center justify-between gap-3 mb-4">
         <form action="{{ route('demande.store', ['offer_id' => $offer->id, 'sender_id' => auth()->user()->id, 'receiver_id' => $offer->user_id]) }}" method="POST">
           @csrf
+          @if ($offer->status=='disponible')
           <button type="submit"
             onclick="event.stopPropagation()"
             class="btn-gradient inline-flex items-center gap-1.5 px-4 py-2 rounded-[11px] font-cinzel text-[11px] font-bold tracking-wide text-[#0e0b08] border-none cursor-pointer transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_6px_20px_rgba(193,68,14,0.4)]">
             <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Postuler
           </button>
+          @else
+          @endif
         </form>
-        <div class="inline-flex items-center gap-1.5 text-[10px] font-cinzel px-3 py-1 rounded-full bg-[rgba(232,160,32,0.1)] border border-[rgba(232,160,32,0.25)] text-saffron">
-          <span class="urgent-dot"></span>
-          Urgent
-        </div>
+
+            @if($offer->status=='disponible')
+            <div class="inline-flex items-center gap-1.5 text-[10px] font-cinzel px-3 py-1 rounded-full bg-green-100 border border-green-400 text-green-700">
+                <span class="disponible-dot"></span>
+                Disponible
+            </div>
+        @else
+            <div class="inline-flex items-center gap-1.5 text-[10px] font-cinzel px-3 py-1 rounded-full bg-red-100 border border-red-300 text-red-600">
+                <span class="indisponible-dot"></span>  {{-- 👈 fixed capital I --}}
+                Indisponible
+            </div>
+        @endif
+
       </div>
 
       <!-- Main content row -->
