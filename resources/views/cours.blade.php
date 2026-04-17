@@ -187,14 +187,6 @@
 
       <!-- Duration + Price -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-
-        <!-- <div>
-          <label style="display:block; font-family:'Cinzel',serif; font-size:10px; color:var(--ink-muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">Prix (MAD)</label>
-          <input type="number" name="price" min="0" placeholder="0 = Gratuit"
-            style="width:100%; background:var(--surface3); border:1px solid var(--border); border-radius:10px; padding:9px 14px; font-size:13px; color:var(--ink); font-family:'Tajawal',sans-serif; outline:none; transition:border-color 0.2s; box-sizing:border-box;"
-            onfocus="this.style.borderColor='rgba(232,160,32,0.5)'"
-            onblur="this.style.borderColor='var(--border)'" />
-        </div> -->
       </div>
 
       <!-- Description -->

@@ -22,9 +22,10 @@ class CoursRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Title'=>'required|string|max:255',
-            'Article'=>'nullable|string',
+            'title'=>'required|string|max:255',
+            'article'=>'nullable|string',
             'url'=>'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'category_id'=>'required|exists:categories,id', 
         ];
     }
 }

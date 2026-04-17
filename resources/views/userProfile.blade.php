@@ -53,10 +53,11 @@
             </div>
           </div>
           <div class="hero-stats">
-            <div class="hero-stat"><div class="hero-stat-n">248</div><div class="hero-stat-l">Vues profil</div></div>
-            <div class="hero-stat"><div class="hero-stat-n">1.4K</div><div class="hero-stat-l">Impressions</div></div>
-            <div class="hero-stat"><div class="hero-stat-n">83</div><div class="hero-stat-l">Relations</div></div>
-            <div class="hero-stat"><div class="hero-stat-n" style="color:var(--copper-lt);">4.9</div><div class="hero-stat-l">Note</div></div>
+            <div class="hero-stat"><div class="hero-stat-n">{{ $user->vues }}</div><div class="hero-stat-l">Vues profil</div></div>
+
+            <div class="hero-stat"><div class="hero-stat-n">{{$posts}}</div><div class="hero-stat-l">poste</div></div>
+            <div class="hero-stat"><div class="hero-stat-n">{{ $offers }}</div><div class="hero-stat-l">Offer</div></div>
+            <div class="hero-stat"><div class="hero-stat-n" style="color:var(--copper-lt);">{{ $cours }}</div><div class="hero-stat-l">cours</div></div>
           </div>
         </div>
 

@@ -18,8 +18,8 @@ class CoursFactory extends Factory
     {
         return [
             'user_id'=>fake()->numberBetween(0,10),
-            'Title'=>fake()->name(),
-            'Article'=>fake()->text(),
+            'title'=>fake()->name(),
+            'article'=>fake()->text(),
             'category_id'=>fake()->numberBetween(0,12),
             'url'=>fake()->url(),
         ];

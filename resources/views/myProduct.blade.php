@@ -26,15 +26,7 @@
         <h2 style="font-family:'Cinzel',serif; font-size:24px; margin-top:4px; margin-bottom:4px; color:var(--ink);">Produits Artisanaux</h2>
         <p style="font-size:13px; color:var(--ink-muted);">Pièces uniques fabriquées à la main par nos artisans</p>
       </div>
-      <button onclick="openAddModal()" style="display:inline-flex; align-items:center; gap:6px; padding:9px 20px; border-radius:11px; font-family:'Cinzel',serif; font-size:11px; font-weight:700; background:linear-gradient(135deg,var(--clay),var(--saffron)); color:#0e0b08; border:none; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.boxShadow='0 6px 20px rgba(193,68,14,0.4)'" onmouseout="this.style.boxShadow='none'">
-  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-  Ajouter un produit
-</button>
-<a href="{{ route('myProduct') }}">
-    <button  style="display:inline-flex; align-items:center; gap:6px; padding:9px 20px; border-radius:11px; font-family:'Cinzel',serif; font-size:11px; font-weight:700; background:linear-gradient(135deg,var(--clay),var(--saffron)); color:#0e0b08; border:none; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.boxShadow='0 6px 20px rgba(193,68,14,0.4)'" onmouseout="this.style.boxShadow='none'">
-  My Products
-</button>
-</a>
+
     </div>
 
     <div class="products-layout">
@@ -50,7 +42,7 @@
           <div>
             <p style="font-size:11px; color:var(--ink-muted); margin-bottom:2px;">Résultats</p>
             <p style="font-family:'Cinzel',serif; font-size:18px; color:var(--ink);">
-              {{ $products->count() ?? 0 }} <span style="color:var(--saffron);">produits</span>
+              {{ auth()->user()->products()->count() ?? 0 }} <span style="color:var(--saffron);">produits</span>
             </p>
           </div>
            <div>
@@ -82,7 +74,7 @@
         <!-- Products grid -->
         <div class="products-grid" id="products-grid">
 
-          @forelse ($products as $product)
+          @forelse (auth()->user()->products as $product)
           @php
             $gradients = [
               'linear-gradient(135deg,var(--clay),var(--saffron))',
@@ -109,9 +101,7 @@
               <span class="product-cat">{{ $product->category->name ?? 'Artisanat' }}</span>
               <h3 class="product-name">{{ $product->name }}</h3>
               <div class="stars">
-                @for($s = 0; $s < 5; $s++)
-                <svg width="11" height="11" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" class="{{ $s < 4 ? 'star-filled' : 'star-empty' }}" stroke="none"/></svg>
-                @endfor
+
                 <span style="font-size:11px; color:var(--ink-muted); margin-left:3px;">({{ rand(4,48) }})</span>
               </div>
               <p class="product-desc">{{ $product->description ?? 'Pièce artisanale unique, fabriquée à la main selon les techniques traditionnelles marocaines.' }}</p>
@@ -126,10 +116,10 @@
                   <div class="product-price-old">{{ $product->old_price }}Points</div>
                   @endif
                 </div>
-                <form action="{{ route('achete.product',['id'=>$product->id]) }}">
+                <form action="{{ route('vendu.product',['id'=>$product->id]) }}">
                 <button class="btn-cart" type="submit"  onclick="event.stopPropagation()">
                   <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-                  Acheter
+                 Vendu
                 </button>
                 </form>
               </div>
@@ -211,87 +201,7 @@
     </div>
   </div>
   <!-- ── Add Product Modal ── -->
-<div id="add-modal" class="qv-modal-ov hidden" onclick="if(event.target===this) closeAddModal()">
-<div style="background:var(--surface2); border:1px solid var(--border); border-radius:22px; width:100%; max-width:560px; overflow-y:auto; max-height:90vh; position:relative;">
-    <!-- Gold top bar -->
-    <div style="height:3px; background:linear-gradient(90deg,var(--clay),var(--saffron),var(--copper-lt));"></div>
 
-    <!-- Header -->
-    <div style="padding:22px 28px 16px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between;">
-      <div>
-        <span class="label-cinzel" style="display:block; margin-bottom:3px;">Nouvelle pièce</span>
-        <h2 style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:700; color:var(--ink); margin:0;">Ajouter un produit</h2>
-      </div>
-      <button class="qv-close" style="position:static;" onclick="closeAddModal()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
-    </div>
-
-    <!-- Form -->
-    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" style="padding:24px 28px; display:flex; flex-direction:column; gap:18px;">
-      @csrf
-
-      <!-- Name -->
-      <div>
-        <label class="filter-section-title" style="display:block; margin-bottom:6px;">Nom du produit *</label>
-        <input type="text" name="name" required class="filter-input" placeholder="Ex: Plateau en Zellige de Fès" />
-      </div>
-
-      <!-- Category -->
-      <div>
-        <label class="filter-section-title" style="display:block; margin-bottom:6px;">Catégorie *</label>
-        <select name="category_id" required class="filter-input">
-          <option value="">Choisir une catégorie…</option>
-          @foreach ($categorys as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-          @endforeach
-
-        </select>
-      </div>
-
-      <!-- Price row -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-        <div>
-          <label class="filter-section-title" style="display:block; margin-bottom:6px;">Prix (MAD) *</label>
-          <input type="number" name="price" required min="0" class="filter-input" placeholder="Ex: 850" />
-        </div>
-      </div>
-
-      <!-- Description -->
-      <div>
-        <label class="filter-section-title" style="display:block; margin-bottom:6px;">Description</label>
-        <textarea name="description" rows="3" class="filter-input" style="resize:vertical;" placeholder="Décrivez votre pièce artisanale…"></textarea>
-      </div>
-
-      <!-- Photo upload -->
-      <div>
-        <label class="filter-section-title" style="display:block; margin-bottom:6px;">Photo du produit</label>
-        <label id="upload-label" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:24px; border:2px dashed var(--border); border-radius:12px; cursor:pointer; transition:all 0.2s; background:var(--surface3);" onmouseover="this.style.borderColor='rgba(232,160,32,0.5)'" onmouseout="this.style.borderColor='var(--border)'">
-          <div id="upload-preview" style="display:none; width:80px; height:80px; border-radius:10px; overflow:hidden; margin-bottom:4px;">
-            <img id="preview-img" src="" alt="preview" style="width:100%; height:100%; object-fit:cover;" />
-          </div>
-          <svg id="upload-icon" width="28" height="28" fill="none" stroke="var(--saffron)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          <span id="upload-text" style="font-size:12px; color:var(--ink-muted); text-align:center;">Cliquer pour choisir une image<br><span style="font-size:10px;">JPG, PNG, GIF — max 2 Mo</span></span>
-          <input type="file" name="photo" id="photo-input" accept="image/*" style="display:none;" onchange="previewPhoto(event)" />
-        </label>
-      </div>
-
-      <!-- Availability -->
-
-
-      <!-- Footer buttons -->
-      <div style="display:flex; gap:10px; padding-top:4px; border-top:1px solid var(--border); margin-top:4px;">
-        <button type="button" onclick="closeAddModal()" style="flex:1; padding:10px; border-radius:11px; font-family:'Cinzel',serif; font-size:11px; font-weight:700; background:var(--surface3); color:var(--ink-dim); border:1px solid var(--border); cursor:pointer; transition:all 0.2s;" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-dim)'">
-          Annuler
-        </button>
-        <button type="submit" class="btn-apply-filter" style="flex:2; padding:10px;">
-          ✦ Publier le produit
-        </button>
-      </div>
-
-    </form>
-  </div>
-</div>
 
   <script>
     /* Theme */

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('condition',['blocke','deblocke'])->default('deblocke');
             $table->string('email')->unique();
             $table->float('solde')->default(0);
+            @$table->integer('vues')->default(0);
             $table->string('phone_number')->nullable();
             $table->string('profile_photo')->nullable();
             $table->string('localisation')->nullable();

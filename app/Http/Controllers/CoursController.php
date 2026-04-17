@@ -30,18 +30,18 @@ class CoursController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CoursRequest $request)
+public function store(CoursRequest $request)
 {
     $user = auth()->user();
     $data = $request->validated();
 
-    if ($request->hasFile('url')) {
+ if ($request->hasFile('url')) {
         $filename = time() . '.' . $request->file('url')->getClientOriginalExtension();
         $request->file('url')->move(public_path('image'), $filename);
         $data['url'] = $filename;
     }
 
-    Cours::create(array_merge($data, ['user_id' => $user->id]));
+    Cours::create(array_merge($data,['user_id' => $user->id]));
     $user->increment('solde', 10);
 
     return redirect()->route('cours.index');
@@ -53,7 +53,7 @@ class CoursController extends Controller
     public function show($id)
     {
         $cours=Cours::findOrFail($id);
-        return view('Cours.show',compact('cours'));
+        return view('CoursDetails',compact('cours'));
     }
 
     /**

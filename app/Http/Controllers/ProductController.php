@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
+        $products=Product::where('status','disponible')->get();
         $categorys=Category::all();
         return view('Products',compact('products','categorys'));
     }
@@ -91,11 +91,24 @@ class ProductController extends Controller
 
     public function AcheteProduct($id){
         $product=Product::findOrFail($id);
-        if($product->price > auth()->user()->solde){
+        $user=auth()->user();
+        if($product->price > auth()->user()->solde || $product->user_id==$user->id){
         return redirect()->route('products.index')->with('You cant buy this product');
         }
-        auth()->user()->increment('solde',$product->price);
-        $product->decrement('quantite',1);
+        $product->user()->increment('solde',$product->price);
+
+        auth()->user()->decrement('solde',$product->price);
+         $product->update([
+            'status'=>'vendu',
+            'user_id'=>$user->id,
+            ]);
             return redirect()->route('products.index');
+
+    }
+
+    public function VenduProduct($id){
+        $product=Product::findOrFail($id);
+        $product->update(['status'=>'disponible']);
+        return redirect()->route('myProduct');
     }
 }

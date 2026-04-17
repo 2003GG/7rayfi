@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cours;
+use App\Models\Product;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Offer;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
 
@@ -26,7 +30,11 @@ class ProfileController extends Controller
 
 public function UserProfile($id){
         $user=User::findOrFail($id);
-        return view('UserProfile',compact('user'));
+        $user->increment('vues');
+        $posts=Post::where('user_id',$id)->count();
+        $offers=Offer::where('user_id',$id)->count();
+        $cours=Cours::where('user_id',$id)->count();
+        return view('UserProfile',compact('user','posts','offers','cours'));
 }
     }
 

@@ -37,7 +37,7 @@ class OfferPolicy
      */
     public function update(User $user, Offer $offer): bool
     {
-        return false;
+        return $user->id==$offer->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class OfferPolicy
      */
     public function delete(User $user, Offer $offer): bool
     {
-        return false;
+        return $user->id==$offer->user_id || $user->role_id==1;
     }
 
     /**
@@ -53,7 +53,7 @@ class OfferPolicy
      */
     public function restore(User $user, Offer $offer): bool
     {
-        return false;
+        return $user->id==$offer->user_id || $user->role_id==1;
     }
 
     /**
@@ -61,6 +61,6 @@ class OfferPolicy
      */
     public function forceDelete(User $user, Offer $offer): bool
     {
-        return false;
+        return $user->id==$offer->user_id || $user->role_id==1;
     }
 }

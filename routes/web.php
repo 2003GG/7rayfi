@@ -24,6 +24,8 @@ Route::get('/blocke',function(){
 
 
 
+
+
 Route::get('/auth/google',          [GoogleController::class, 'redirect'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
 
@@ -53,17 +55,18 @@ Route::middleware(['auth','deblocke'])->group(function () {
     Route::put('/dashboar/{id}',[PostController::class,'report'])->name('post.report');
 
     Route::post('/dashboard/{id}',[CommentController::class,'store'])->name('comments.store');
-    Route::get('/dashboard/{id}',[CommentController::class,'show'])->name('comments.show');
+    Route::get('/dashboard/{id}/comment',[CommentController::class,'show'])->name('comments.show');
     Route::delete('/dashboard/comment/{id}',[CommentController::class,'destroy'])->name('comment.destroy');
 
 
-    Route::get('/offer',[OfferController::class,    'index'])->name('offer.index');
+    Route::get('/offer',[OfferController::class,'index'])->name('offer.index');
     Route::post('/offer',[OfferController::class,'store'])->name('offers.store');
+    Route::delete('/offer/{id}',[OfferController::class,'destroy'])->name('offer.destroy');
 
 
-    Route::get('/cours',[CoursController::class,    'index'])->name('cours.index');
-    Route::post('/cours',[CoursController::class,    'store'])->name('cours.store');
-    Route::get('/cours/{id}',[CoursController::class,    'show'])->name('cours.show');
+    Route::get('/cours',[CoursController::class,'index'])->name('cours.index');
+    Route::post('/cours',[CoursController::class,'store'])->name('cours.store');
+    Route::get('/cours/{id}',[CoursController::class,'show'])->name('cours.show');
 
 
 
@@ -77,11 +80,15 @@ Route::middleware(['auth','deblocke'])->group(function () {
     Route::get('/products',[ProductController::class,'index'])->name('products.index');
     Route::post('/products',[ProductController::class,'store'])->name('products.store');
     Route::get('/products/{id}',[ProductController::class,'AcheteProduct'])->name('achete.product');
+    Route::put('/products/{id}',[ProductController::class,'VenduProduct'])->name('vendu.product');
+    Route::get('/MyProduct',function(){
+    return view('MyProduct');
+})->name('myProduct');
 
 
 });
 
-Route::middleware(['auth','admin'])->group(function(){
+    Route::middleware(['auth','admin'])->group(function(){
     Route::get('/network',[AdminController::class,'index'])->name('admin.network');
     Route::put('/network/{id}/users',[AdminController::class,'Blocke'])->name('blocke.user');
     Route::put('/network/{id}',[AdminController::class,'Deblocke'])->name('deblocke.user');
