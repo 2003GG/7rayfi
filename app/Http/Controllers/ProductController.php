@@ -30,21 +30,25 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductRequest $request)
-    {
-
-         $data = $request->validated();
+   public function store(ProductRequest $request)
+{
+    $data = $request->validated();
 
     if ($request->hasFile('photo')) {
-        $filename = time() . '.' . $request->file('photo')->getClientOriginalExtension();
-        $request->file('photo')->move(public_path('image'), $filename);
+        $file = $request->file('photo');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('image'), $filename);
         $data['photo'] = $filename;
     }
 
-    Product::create($data);
-        auth()->user()->increment('solde',5);
-        return redirect()->route('product.index');
-    }
+    Product::create(array_merge($data, [
+        'user_id' => auth()->user()->id,
+        'status'  => 'disponible',
+    ]));
+
+    auth()->user()->increment('solde', 2);
+    return redirect()->route('product.index');
+}
 
     /**
      * Display the specified resource.
@@ -68,7 +72,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(ProductRequest $request,$id)
     {
         $validate=$request->validated();
 
@@ -108,7 +112,9 @@ class ProductController extends Controller
 
     public function VenduProduct($id){
         $product=Product::findOrFail($id);
-        $product->update(['status'=>'disponible']);
+        $product->update(
+            ['status'=>'disponible']
+            );
         return redirect()->route('myProduct');
     }
 }

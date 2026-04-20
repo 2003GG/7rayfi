@@ -17,7 +17,7 @@ return new class extends Migration
             $table->float('price');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->text('description');
-            $table->foreignId('order_id')->default(null)->constrained();
+            $table->foreignId('order_id')->nullable()->constrained();
             $table->foreignId('category_id')->default(null)->constrained();
             $table->enum('status',['disponible','vendu'])->default('disponible');
             $table->string('photo')->nullable();

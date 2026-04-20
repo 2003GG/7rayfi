@@ -34,8 +34,17 @@
       <!-- ── Filter sidebar ── -->
     @include('layouts/sidebar')
 
+
       <!-- ── Main column ── -->
       <div>
+         <div style="margin-bottom:28px; display:flex; justify-content:space-between; align-items:flex-end; gap:16px;">
+
+        <a href="{{ route('products.index') }}">
+            <button  style="display:inline-flex; align-items:center; gap:6px; padding:9px 20px; border-radius:11px; font-family:'Cinzel',serif; font-size:11px; font-weight:700; background:linear-gradient(135deg,var(--clay),var(--saffron)); color:#0e0b08; border:none; cursor:pointer; transition:all 0.2s; white-space:nowrap;" onmouseover="this.style.boxShadow='0 6px 20px rgba(193,68,14,0.4)'" onmouseout="this.style.boxShadow='none'">
+        tous Products
+        </button>
+        </a>
+    </div>
 
         <!-- Topbar -->
         <div class="topbar">
@@ -112,11 +121,12 @@
               <div class="product-footer">
                 <div>
                   <div class="product-price">{{ $product->price}} MAD</div>
-                  @if($product->old_price ?? false)
-                  <div class="product-price-old">{{ $product->old_price }}Points</div>
-                  @endif
+
+
                 </div>
-                <form action="{{ route('vendu.product',['id'=>$product->id]) }}">
+                <form action="{{ route('vendu.product',$product->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
                 <button class="btn-cart" type="submit"  onclick="event.stopPropagation()">
                   <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                  Vendu
