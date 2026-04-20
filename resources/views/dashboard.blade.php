@@ -1,274 +1,542 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Network</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home — 7RAYFI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tajawal:wght@300;400;500;700&family=Cinzel:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+
 </head>
-<body class="bg-[url('https://i.pinimg.com/1200x/16/a6/b9/16a6b934718c3b3dce47bb0c22a1cf69.jpg')]  bg-center h-screen">
-    <!-- Header -->
-    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-14">
-                <div class="flex items-center gap-4">
-                    <img src="logo.png" alt="" class="h-14">
-                    <div class="relative hidden md:block">
-                        <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        <input type="text" placeholder="Search" class="pl-10 pr-4 py-2 w-64 bg-gray-700 text-white placeholder-gray-400 rounded border-none focus:bg-gray-600 focus:ring-2 focus:ring-purple-500 transition">
+
+<body>
+
+    <!-- ══════════ NAVBAR ══════════ -->
+      @include('layouts/header')
+
+
+    <!-- ══════════ 4-COLUMN GRID ══════════ -->
+    <div class="grid4">
+
+        <!-- ─── COL 1: Profile sidebar ─── -->
+        @include('layouts/sidebar')
+
+        <!-- ─── COL 2: Second left sidebar ─── -->
+        <aside class="col2" style="position:sticky;top:78px;align-self:start;">
+
+            <!-- Skills -->
+            <div class="card" style="margin-bottom:14px;">
+                <div class="card-accent accent-ocean"></div>
+                <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>My Skills</div>
+                <div style="padding:12px 14px 14px;">
+                    <span class="skill-pill">🪡 Zellige</span>
+                    <span class="skill-pill">🏺 Pottery</span>
+                    <span class="skill-pill">🧵 Textile</span>
+                    <span class="skill-pill">🔨 Cuivre</span>
+                    <span class="skill-pill">✒️ Calligraphie</span>
+                    <span class="skill-pill">🌿 Tadelakt</span>
+                    <div style="margin-top:10px;">
+                        <button
+                            style="width:100%;font-size:11px;color:var(--saffron);background:none;border:1px dashed rgba(232,160,32,.25);border-radius:10px;padding:6px;cursor:pointer;font-family:'Cinzel',serif;transition:all .2s;"
+                            onmouseover="this.style.borderColor='rgba(232,160,32,.5)'"
+                            onmouseout="this.style.borderColor='rgba(232,160,32,.25)'">+ Add skill</button>
                     </div>
                 </div>
-                
-                <nav class="flex items-center gap-8">
-                    <a href="#" class="nav-item flex flex-col items-center gap-1 text-gray-400 hover:text-white transition group">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg>
-                        <span class="text-xs hidden md:block">Home</span>
-                    </a>
-                    <a href="network.html" class="nav-item flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        <span class="text-xs hidden md:block">Network</span>
-                    </a>
-                    <a href="#" class="nav-item flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                        </svg>
-                        <span class="text-xs hidden md:block">Jobs</span>
-                    </a>
-                    <a href="#" class="nav-item flex flex-col items-center gap-1 text-gray-400 hover:text-white transition">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                        </svg>
-                        <span class="text-xs hidden md:block">Messaging</span>
-                    </a>
-                    <a href="#" class="nav-item flex flex-col items-center gap-1 text-gray-400 hover:text-white transition relative">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                        </svg>
-                        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-                        <span class="text-xs hidden md:block">Notifications</span>
-                    </a>
-                    <div class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition cursor-pointer">
-                        <div class="w-6 h-6 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold">
-                            YO
-                        </div>
-                        <span class="text-xs hidden md:block">Me</span>
-                    </div>
-                </nav>
             </div>
-        </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <!-- Left Sidebar -->
-            <aside class="lg:col-span-3">
-                <!-- Profile Card -->
-                <div class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 overflow-hidden mb-4 hover-lift fade-in">
-                    <div class="h-16 bg-gradient-to-r from-purple-600 to-blue-600"></div>
-                    <div class="px-4 pb-4 -mt-8">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold border-4 border-gray-800">
-                            YO
-                        </div>
-                        <h3 class="mt-3 font-semibold text-white">Your Name</h3>
-                        <p class="text-sm text-gray-400 mt-1">Professional Title | Industry Expert</p>
+            <!-- Upcoming Events -->
+            <div class="card" style="margin-bottom:14px;">
+                <div class="card-accent accent-ocean"></div>
+                <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>Events</div>
+                <div class="ev-item">
+                    <div class="ev-dt" style="background:linear-gradient(135deg,var(--clay),var(--saffron));">
+                        <div class="ev-day">14</div>
+                        <div class="ev-mon">Apr</div>
                     </div>
-                    <div class="border-t border-gray-700 px-4 py-3 hover:bg-gray-700 transition cursor-pointer">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="text-gray-400">Profile views</span>
-                            <span class="text-purple-400 font-semibold">142</span>
-                        </div>
-                    </div>
-                    <div class="border-t border-gray-700 px-4 py-3 hover:bg-gray-700 transition cursor-pointer">
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="text-gray-400">Post impressions</span>
-                            <span class="text-purple-400 font-semibold">1,234</span>
-                        </div>
+                    <div>
+                        <div class="ev-ttl">Salon de l'Artisanat</div>
+                        <div class="ev-sub">📍 Casablanca</div>
                     </div>
                 </div>
-
-                <!-- Quick Links -->
-                <div class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-4 fade-in" style="animation-delay: 0.1s">
-                    <h3 class="font-semibold text-white mb-3">Quick Links</h3>
-                    <div class="space-y-2">
-                        <a href="#" class="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-400 transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-                            </svg>
-                            My Groups
-                        </a>
-                        <a href="#" class="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-400 transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z"></path>
-                            </svg>
-                            Events
-                        </a>
-                        <a href="#" class="flex items-center gap-2 text-sm text-gray-400 hover:text-purple-400 transition">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
-                            </svg>
-                            Newsletters
-                        </a>
+                <div class="ev-item">
+                    <div class="ev-dt" style="background:linear-gradient(135deg,var(--indigo),var(--indigo-lt));">
+                        <div class="ev-day" style="color:#fff;">22</div>
+                        <div class="ev-mon" style="color:rgba(255,255,255,.7);">Apr</div>
+                    </div>
+                    <div>
+                        <div class="ev-ttl">Freelancer Summit</div>
+                        <div class="ev-sub">💻 Online · Free</div>
                     </div>
                 </div>
-            </aside>
+                <div class="ev-item">
+                    <div class="ev-dt" style="background:linear-gradient(135deg,var(--sage),#2d5c3e);">
+                        <div class="ev-day" style="color:#fff;">3</div>
+                        <div class="ev-mon" style="color:rgba(255,255,255,.7);">Mai</div>
+                    </div>
+                    <div>
+                        <div class="ev-ttl">Design Week Marrakech</div>
+                        <div class="ev-sub">📍 Marrakech · Hybrid</div>
+                    </div>
+                </div>
+                <div style="padding:10px 16px;"><button
+                        style="width:100%;text-align:center;font-size:11px;color:var(--copper-lt);background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;">View
+                        all events →</button></div>
+            </div>
 
-            <!-- Main Feed -->
-            <div class="lg:col-span-6">
-                <!-- Create Post -->
-                <div class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 p-4 mb-4 fade-in">
-                    <div class="flex gap-3">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
-                            YO
+            <!-- Featured Jobs -->
+            <div class="card" style="margin-bottom:14px;">
+                <div class="card-accent accent-ocean"></div>
+                <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>Featured Jobs</div>
+                <div class="job-item">
+                    <div class="job-logo">🏺</div>
+                    <div style="min-width:0;">
+                        <div class="job-t">Pottery Designer</div>
+                        <div class="job-c">Fassi Céramique · Fès</div>
+                    </div><span class="job-tag">CDI</span>
+                </div>
+                <div class="job-item">
+                    <div class="job-logo">🧵</div>
+                    <div style="min-width:0;">
+                        <div class="job-t">Textile Artisan</div>
+                        <div class="job-c">Atlas Loom · Remote</div>
+                    </div><span class="job-tag">Freelance</span>
+                </div>
+                <div class="job-item">
+                    <div class="job-logo">💻</div>
+                    <div style="min-width:0;">
+                        <div class="job-t">UI Designer</div>
+                        <div class="job-c">StartupMA · Rabat</div>
+                    </div><span class="job-tag">CDD</span>
+                </div>
+                <div style="padding:10px 16px;"><button
+                        style="width:100%;text-align:center;font-size:11px;color:var(--copper-lt);background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;">See
+                        all jobs →</button></div>
+            </div>
+
+        </aside>
+
+        <!-- ─── COL 3: FEED ─── -->
+        <main style="min-width:0;">
+
+            <!-- Header -->
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+                <div>
+                    <h1
+                        style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);line-height:1.1;">
+                        Your Feed</h1>
+                    <p style="font-size:11.5px;color:var(--ink-muted);margin-top:2px;">What's happening in your network
+                    </p>
+                </div>
+                <button type="button" class="btn-create"
+                    onclick="document.getElementById('post-modal').classList.remove('hidden')">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+                    Create Post
+                </button>
+            </div>
+
+            <!-- Compose -->
+            <div class="compose-card" onclick="document.getElementById('post-modal').classList.remove('hidden')">
+                @if (auth()->user()->profile_photo)
+                    <img class="avatar-md" src="{{ asset('image/' . auth()->user()->profile_photo) }}">
+                @else
+                    <div class="avatar-md">{{ strtoupper(substr(auth()->user()->name, 0, 2)) }}</div>
+
+                @endif
+                <div class="cph">Share a skill, project, or story…</div>
+                <div style="display:flex;gap:8px;flex-shrink:0;"><span
+                        style="font-size:18px;cursor:pointer;">🖼️</span><span
+                        style="font-size:18px;cursor:pointer;">🎬</span></div>
+            </div>
+
+            <div class="zine-thin" style="margin-bottom:20px;"></div>
+
+            <!-- Posts loop -->
+            @foreach ($posts as $post)
+                <article class="post-card">
+                    <div style="padding:16px 16px 0;">
+                        <div style="display:flex;align-items:flex-start;gap:12px;">
+                            @if ($post->user->profile_photo)
+                                <a href="{{ route('show.profile', ['id' => $post->user->id]) }}">
+                                    <img src="{{ asset('image/' . $post->user->profile_photo) }}" class="avatar-md" alt="">
+                                </a>
+                            @else
+                                <a href="{{ route('show.profile', ['id' => $post->user->id])  }}">
+                                    <div class="avatar-md">{{ strtoupper(substr($post->user->name, 0, 2)) }}</div>
+                                </a>
+                            @endif
+                            <div style="flex:1;min-width:0;">
+                                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+                                    <div>
+                                        <span class="pun"><a
+                                                href="{{ route('show.profile', ['id' => $post->user->id]) }}">{{ $post->user->name }}</a></span>
+                                        <p class="ptit">{{ $post->title }}</p>
+                                        <p class="ptim">{{ $post->created_at->diffForHumans() }} · 🌐</p>
+                                    </div>
+                                    <div style="position:relative;">
+                                        <button class="kbtn" type="button"
+                                            onclick="this.nextElementSibling.classList.toggle('hidden')">
+                                            <svg width="15" height="15" fill="currentColor" viewBox="0 0 20 20">
+                                                <path
+                                                    d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                                            </svg>
+                                        </button>
+                                        <div class="kmenu hidden">
+                                            <form method="POST" action="{{ route('post.destroy', ['id' => $post->id]) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                @if ($post->user_id == auth()->user()->id)
+                                                    <button type="submit" class="kitem red">🗑 Delete post</button>
+                                                @else
+                                                @endif
+                                            </form>
+                                            <button type="button" class="kitem">🔖 Save post</button>
+                                            <form action="{{ route('post.report', ['id' => $post->id]) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="kitem">🚫 Report post</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <button onclick="document.getElementById('postInput').focus()" class="flex-1 text-left px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-full text-gray-400 transition">
-                            Start a post...
+                    </div>
+
+                    <p class="pbod">{{ $post->description }}</p>
+
+
+                    @if($post->photo_URL)
+                        <div class="pimg"><img src="{{ asset('image/' . $post->photo_URL) }}" alt="Post image"
+                                style="width:100%;max-height:420px;object-fit:cover;display:block;"></div>
+                    @else
+
+                    @endif
+
+                    <div class="pstats">
+                        <span>👍 {{ $post->likes_count ?? 0 }} likes</span>
+                        <div style="display:flex;gap:14px;">
+                            <span>💬 <a href="{{ route('comments.show', $post->id) }}">{{ $post->comments->count() ?? 0 }}
+                                    comments</a></span>
+
+                        </div>
+                    </div>
+
+                    <div class="pacts">
+
+                        <button type="button" class="pact"><span class="pac-ico">👍</span> Like</button>
+                        <button type="button" class="pact" onclick="toggleComment('comment-{{ $post->id }}')">
+                            <span class="pac-ico">💬</span> Comment
                         </button>
                     </div>
-                    <div class="mt-4 pt-4 border-t border-gray-700">
-                        <div class="flex items-center justify-around">
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400">
-                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path>
+
+                    {{-- ← ADD THIS PART --}}
+                    <div id="comment-{{ $post->id }}" class="hidden"
+                        style="padding:12px 16px; border-top:1px solid var(--border);">
+                        <form action="{{ route('comments.store', $post->id) }}" method="POST"
+                            style="display:flex; gap:10px; align-items:center;">
+                            @csrf
+                            @method('post')
+                            <div class="avatar-md" style="flex-shrink:0;">
+                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                            </div>
+                            <input type="text" name="description" required placeholder="Write a comment…"
+                                style="flex:1; background:var(--surface3); border:1px solid var(--border); border-radius:20px; padding:8px 16px; font-size:13px; color:var(--ink); font-family:'Tajawal',sans-serif; outline:none; transition:border-color 0.2s;"
+                                onfocus="this.style.borderColor='rgba(232,160,32,0.5)'"
+                                onblur="this.style.borderColor='var(--border)'" />
+                            <button type="submit"
+                                style="width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--clay),var(--saffron)); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0e0b08"
+                                    stroke-width="2.5">
+                                    <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                                 </svg>
-                                <span class="text-sm font-medium hidden sm:block">Photo</span>
                             </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400">
-                                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm3 2h6v4H7V5zm8 8v2h1v-2h-1zm-2-2H7v4h6v-4zm2 0h1V9h-1v2zm1-4V5h-1v2h1zM5 5v2H4V5h1zm0 4H4v2h1V9zm-1 4h1v2H4v-2z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="text-sm font-medium hidden sm:block">Video</span>
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400">
-                                <svg class="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="text-sm font-medium hidden sm:block">Event</span>
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400">
-                                <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="text-sm font-medium hidden sm:block">Article</span>
-                            </button>
+                        </form>
+                    </div>
+
+
+                </article>
+            @endforeach
+
+        </main>
+
+        <!-- ─── COL 4: Right sidebar ─── -->
+        <aside class="col4" style="position:sticky;top:78px;align-self:start;">
+
+            <!-- People -->
+            <div class="card" style="margin-bottom:14px;">
+                <div class="card-accent accent-fire"></div>
+                <div class="card-header card-header-fire"><span class="bar bar-fire"></span>People You May Know</div>
+                <div class="follow-item">
+                    <div class="avatar"
+                        style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,var(--indigo),var(--indigo-lt));">
+                        YB</div>
+                    <div>
+                        <div class="fn">Yassine Benali</div>
+                        <div class="fs">Zellige · Fès</div>
+                    </div>
+                    <button class="btn-fol">+ Follow</button>
+                </div>
+                <div class="follow-item">
+                    <div class="avatar"
+                        style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,var(--sage),#2d5c3e);">
+                        FM</div>
+                    <div>
+                        <div class="fn">Fatima Mrabet</div>
+                        <div class="fs">Textile · Marrakech</div>
+                    </div>
+                    <button class="btn-fol">+ Follow</button>
+                </div>
+                <div class="follow-item">
+                    <div class="avatar"
+                        style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,var(--copper),var(--clay));">
+                        AO</div>
+                    <div>
+                        <div class="fn">Amine Ouahbi</div>
+                        <div class="fs">Leather · Meknès</div>
+                    </div>
+                    <button class="btn-fol">+ Follow</button>
+                </div>
+                <div style="padding:10px 16px 14px;"><button
+                        style="width:100%;text-align:center;font-size:11px;color:var(--saffron);background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;">View
+                        all suggestions →</button></div>
+            </div>
+
+            <!-- Trending -->
+            <div class="card" style="margin-bottom:14px;">
+                <div class="card-accent accent-fire"></div>
+                <div class="card-header card-header-fire"><span class="bar bar-fire"></span>Trending in Morocco</div>
+                <div style="padding:12px 16px 14px;">
+                    <span class="tag-pill">#Zellige</span>
+                    <span class="tag-pill">#RemoteWork</span>
+                    <span class="tag-pill">#Marrakech</span>
+                    <span class="tag-pill">#Artisanat</span>
+                    <span class="tag-pill">#Fès</span>
+                    <span class="tag-pill">#OpenToWork</span>
+                    <span class="tag-pill">#Design</span>
+                    <span class="tag-pill">#Startup</span>
+                </div>
+            </div>
+
+            <!-- This week analytics -->
+            <div class="card" style="margin-bottom:14px;">
+                <div class="card-accent accent-fire"></div>
+                <div class="card-header card-header-fire"><span class="bar bar-fire"></span>This Week</div>
+                <div style="padding:14px 16px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                        <span style="font-size:12px;color:var(--ink-dim);">🔥 Streak</span>
+                        <span style="font-family:'Cinzel',serif;font-size:13px;color:var(--clay);">5 days</span>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                        <span style="font-size:12px;color:var(--ink-dim);">👀 Views</span>
+                        <span style="font-family:'Cinzel',serif;font-size:13px;color:var(--saffron);">+38%</span>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <span style="font-size:12px;color:var(--ink-dim);">🤝 New connects</span>
+                        <span style="font-family:'Cinzel',serif;font-size:13px;color:var(--sage);">12</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div style="padding:8px 14px;opacity:.45;">
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+                    <a href="#" style="font-size:10px;color:var(--ink-muted);text-decoration:none;">About</a>
+                    <a href="#" style="font-size:10px;color:var(--ink-muted);text-decoration:none;">Help</a>
+                    <a href="#" style="font-size:10px;color:var(--ink-muted);text-decoration:none;">Privacy</a>
+                    <a href="#" style="font-size:10px;color:var(--ink-muted);text-decoration:none;">Terms</a>
+                </div>
+                <p style="font-family:'Cinzel',serif;font-size:9px;color:var(--ink-muted);">7RAYFI © {{ date('Y') }} ·
+                    Built in Morocco 🇲🇦</p>
+            </div>
+
+        </aside>
+
+    </div><!-- /grid4 -->
+
+
+    <!-- ══════════ MODAL ══════════ -->
+    <div id="post-modal" class="modal-ov hidden" onclick="if(event.target===this) closeModal()">
+        <div class="modal-box">
+            <div class="modal-top"></div>
+            <div class="modal-hd">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <div
+                        style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--clay),var(--saffron));display:flex;align-items:center;justify-content:center;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0e0b08" stroke-width="2.5">
+                            <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </div>
+                    <h2 class="modal-ttl">Create a Post</h2>
+                </div>
+                <button type="button" class="modal-x" onclick="closeModal()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('post')
+                <div style="padding:18px 22px 0;">
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+                        <div class="avatar-md">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
+                        <div>
+                            <p
+                                style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--ink);">
+                                {{ auth()->user()->name }}
+                            </p>
+                            <p style="font-size:11px;color:var(--ink-muted);">Posting publicly · 🌐</p>
+                        </div>
+                    </div>
+                    <div class="zine-thin" style="margin-bottom:16px;"></div>
+
+                    <div style="margin-bottom:14px;">
+                        <label class="fl">Title <span class="r">*</span></label>
+                        <input type="text" name="title" maxlength="120" required
+                            placeholder="Give your post a compelling headline…" class="fi" />
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label class="fl">Category</label>
+                        <select name="category" class="fse">
+                            @foreach ($categorys as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div style="margin-bottom:14px;">
+                        <label class="fl">Content <span class="r">*</span></label>
+                        <textarea name="description" rows="4" maxlength="3000" required
+                            placeholder="What do you want to share with your network?" class="fi fta"></textarea>
+                    </div>
+                    <div style="margin-bottom:16px;">
+                        <label class="fl">Tags <span
+                                style="color:var(--ink-muted);text-transform:none;letter-spacing:0;font-weight:400;">—
+                                comma separated</span></label>
+                        <input type="text" name="tags" placeholder="e.g. Zellige, RemoteWork, Marrakech" class="fi" />
+                    </div>
+                    <div style="margin-bottom:8px;">
+                        <label class="fl">Media</label>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                            <label class="upz">
+                                <div class="upi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        stroke="var(--saffron)" stroke-width="1.6">
+                                        <rect x="3" y="3" width="18" height="18" rx="3" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 15l-5-5L5 21" />
+                                    </svg></div>
+                                <span
+                                    style="font-family:'Cinzel',serif;font-size:12px;color:var(--saffron);">Photo</span>
+                                <span style="font-size:10px;color:var(--ink-muted);">JPG · PNG · GIF</span>
+                                <input type="file" name="photo_URL" id="photo-input" accept="image/*" class="hidden"
+                                    onchange="previewMedia(this,'image')">
+                            </label>
+                            <label class="upz" style="border-color:var(--border);">
+                                <div class="upi" style="background:var(--surface3);"><svg width="20" height="20"
+                                        viewBox="0 0 24 24" fill="none" stroke="var(--ink-dim)" stroke-width="1.6">
+                                        <rect x="2" y="5" width="15" height="14" rx="2" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 9l5-3v12l-5-3V9z" />
+                                    </svg></div>
+                                <span
+                                    style="font-family:'Cinzel',serif;font-size:12px;color:var(--ink-dim);">Video</span>
+                                <span style="font-size:10px;color:var(--ink-muted);">MP4 · MOV</span>
+                                <input type="file" name="video_URL" id="video-input" accept="video/*" class="hidden"
+                                    onchange="previewMedia(this,'video')">
+                            </label>
+                        </div>
+                        <div id="media-preview" class="hidden"
+                            style="margin-top:10px;border-radius:14px;overflow:hidden;border:1px solid var(--border);">
+                            <img id="img-preview" class="hidden"
+                                style="width:100%;max-height:200px;object-fit:cover;display:block;" alt="preview">
+                            <video id="vid-preview" class="hidden"
+                                style="width:100%;max-height:200px;object-fit:cover;display:block;" controls></video>
+                            <div
+                                style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--surface2);">
+                                <span id="media-filename"
+                                    style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:75%;"></span>
+                                <button type="button" onclick="clearMedia()"
+                                    style="font-size:11px;color:#e05555;background:none;border:none;cursor:pointer;">✕
+                                    Remove</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Posts Feed -->
-                <div id="postsFeed">
-                    <!-- Post 1 -->
-                    <article class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 mb-4 hover-lift fade-in" style="animation-delay: 0.1s">
-                        <div class="p-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
-                                    SC
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-start justify-between">
-                                        <div>
-                                            <h3 class="font-semibold text-white hover:text-purple-400 cursor-pointer transition">Sarah Chen</h3>
-                                            <p class="text-sm text-gray-400">Senior Product Designer at TechCorp</p>
-                                            <p class="text-xs text-gray-500 mt-1">2h • 🌐</p>
-                                        </div>
-                                        <button class="text-gray-500 hover:text-gray-300 transition">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <p class="mt-3 text-gray-300 leading-relaxed">
-                                        Excited to share that our team just launched a new feature that improves accessibility for over 1M users! The journey from concept to launch taught me valuable lessons about inclusive design. 🚀
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="px-4 py-2 flex items-center justify-between text-sm text-gray-400 border-t border-b border-gray-700">
-                            <span class="hover:text-purple-400 cursor-pointer transition">234 likes</span>
-                            <div class="flex gap-3">
-                                <span class="hover:text-purple-400 cursor-pointer transition">42 comments</span>
-                                <span class="hover:text-purple-400 cursor-pointer transition">18 shares</span>
-                            </div>
-                        </div>
+                <div class="modal-ft">
+                    <button type="button" onclick="closeModal()" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-create">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                        Publish Post
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-                        <div class="p-2 flex items-center justify-around">
-                            <button onclick="toggleLike(this)" class="like-btn flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400 flex-1 justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-                                </svg>
-                                <span class="font-medium text-sm">Like</span>
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400 flex-1 justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                                </svg>
-                                <span class="font-medium text-sm">Comment</span>
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400 flex-1 justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
-                                </svg>
-                                <span class="font-medium text-sm">Share</span>
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </article>
 
-                    <!-- Post 2 -->
-                    <article class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 mb-4 hover-lift fade-in" style="animation-delay: 0.2s">
-                        <div class="p-4">
-                            <div class="flex items-start gap-3">
-                                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0">
-                                    MR
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex items-start justify-between">
-                                        <div>
-                                            <h3 class="font-semibold text-white hover:text-purple-400 cursor-pointer transition">Marcus Rodriguez</h3>
-                                            <p class="text-sm text-gray-400">Engineering Manager | AI & Machine Learning</p>
-                                            <p class="text-xs text-gray-500 mt-1">5h • 🌐</p>
-                                        </div>
-                                        <button class="text-gray-500 hover:text-gray-300 transition">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <p class="mt-3 text-gray-300 leading-relaxed">
-                                        Looking for talented ML engineers to join our growing team. We're building the next generation of AI-powered solutions. Drop a comment or DM if interested!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="px-4 py-2 flex items-center justify-between text-sm text-gray-400 border-t border-b border-gray-700">
-                            <span class="hover:text-purple-400 cursor-pointer transition">156 likes</span>
-                            <div class="flex gap-3">
-                                <span class="hover:text-purple-400 cursor-pointer transition">28 comments</span>
-                                <span class="hover:text-purple-400 cursor-pointer transition">12 shares</span>
-                            </div>
-                        </div>
+    <script>
+        /* ── THEME: persist & init ── */
+        (function () {
+            var t = localStorage.getItem('7rayfi-theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', t);
+            setIcon(t);
+        })();
 
-                        <div class="p-2 flex items-center justify-around">
-                            <button onclick="toggleLike(this)" class="like-btn flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400 flex-1 justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
-                                </svg>
-                                <span class="font-medium text-sm">Like</span>
-                            </button>
-                            <button class="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 rounded transition text-gray-400 flex-1 justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255
+        function toggleTheme() {
+            var cur = document.documentElement.getAttribute('data-theme');
+            var next = cur === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('7rayfi-theme', next);
+            setIcon(next);
+        }
+        function setIcon(t) {
+            var el = document.getElementById('ticon');
+            if (el) el.textContent = t === 'dark' ? '☀️' : '🌙';
+        }
+
+        /* ── MODAL ── */
+        function closeModal() { document.getElementById('post-modal').classList.add('hidden'); }
+
+        /* ── MEDIA ── */
+        function previewMedia(input, type) {
+            if (!input.files || !input.files[0]) return;
+            var url = URL.createObjectURL(input.files[0]);
+            var img = document.getElementById('img-preview');
+            var vid = document.getElementById('vid-preview');
+            if (type === 'image') { img.src = url; img.classList.remove('hidden'); vid.classList.add('hidden'); }
+            else { vid.src = url; vid.classList.remove('hidden'); img.classList.add('hidden'); }
+            document.getElementById('media-filename').textContent = input.files[0].name;
+            document.getElementById('media-preview').classList.remove('hidden');
+        }
+        function clearMedia() {
+            ['photo-input', 'video-input'].forEach(id => document.getElementById(id).value = '');
+            ['img-preview', 'vid-preview', 'media-preview'].forEach(id => document.getElementById(id).classList.add('hidden'));
+        }
+
+        /* ── KEBAB ── */
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.kbtn'))
+                document.querySelectorAll('.kmenu').forEach(m => m.classList.add('hidden'));
+        });
+
+        function toggleComment(id) {
+            document.getElementById(id).classList.toggle('hidden');
+            document.getElementById(id).querySelector('input').focus();
+        }
+    </script>
+
+</body>
+
+</html>

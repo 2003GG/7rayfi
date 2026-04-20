@@ -22,10 +22,16 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'google_id',
         'role_id',
-        'departement_id',
         'email',
+        'status',
+        'condition',
         'password',
+        'phone_number',
+        'profile_photo',
+        'biographie',
+        'localisation',
     ];
 
     /**
@@ -59,8 +65,15 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-      public function order()
+      public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }

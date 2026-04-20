@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('demandes', function (Blueprint $table) {
             $table->id();
+            $table->integer('receiver_id');
+            $table->integer('sender_id');
+            $table->foreign('sender_id')->references('id')->on('users');
+            $table->foreign('receiver_id')->references('id')->on('users');
+            $table->foreignId('offer_id');
             $table->timestamps();
         });
+
     }
 
     /**
