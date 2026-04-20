@@ -97,8 +97,13 @@
 
           <article class="product-card" onclick="openQuickView('{{ $product->name ?? 'Produit' }}','{{ $product->price ?? 0 }} MAD','{{ $product->description ?? '' }}')">
             <div class="product-img">
+                @if ($product->photo)
+                <img src="{{ asset('image/'.$product->photo)}}" alt="{{ $product->name }}" />
 
+                    @else
                 <img src="{{ asset('image/product.jpg')}}" alt="{{ $product->name }}" />
+
+                @endif
 
 
               <button class="product-wishlist" onclick="event.stopPropagation(); toggleWishlist(this)" title="Ajouter aux favoris">
