@@ -14,7 +14,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Offer::all();
+        $offers = Offer::orderBy('id', 'DESC')->get();
 
         foreach ($offers as $offer) {
             if ($offer->end_date < now()) {

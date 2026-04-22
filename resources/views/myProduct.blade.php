@@ -98,8 +98,12 @@
 
           <article class="product-card" onclick="openQuickView('{{ $product->name ?? 'Produit' }}','{{ $product->price ?? 0 }} MAD','{{ $product->description ?? '' }}')">
             <div class="product-img">
+                @if ($product->photo)
+                <img src="{{ asset('image/'.$product->photo)}}" alt="{{ $product->name }}" />
+                @else
+                 <img src="{{ asset('image/product.jpg')}}" alt="{{ $product->name }}" />
+                @endif
 
-                <img src="{{ asset('image/product.jpg')}}" alt="{{ $product->name }}" />
 
 
               <button class="product-wishlist" onclick="event.stopPropagation(); toggleWishlist(this)" title="Ajouter aux favoris">
@@ -124,13 +128,20 @@
 
 
                 </div>
-                <form action="{{ route('vendu.product',$product->id) }}" method="post">
+                <form action="{{ route('vendu.product',['id'=>$product->id]) }}" method="post">
                     @csrf
                     @method('PUT')
+                    @if ($product->status=='vendu')
                 <button class="btn-cart" type="submit"  onclick="event.stopPropagation()">
                   <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                  Vendu
                 </button>
+                @else
+                 <button class="btn-cart"   onclick="event.stopPropagation()">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    ....
+                </button>
+                @endif
                 </form>
               </div>
             </div>

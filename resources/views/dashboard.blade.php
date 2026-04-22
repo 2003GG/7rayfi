@@ -33,20 +33,19 @@
             <!-- Skills -->
             <div class="card" style="margin-bottom:14px;">
                 <div class="card-accent accent-ocean"></div>
-                <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>My Skills</div>
+                <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>categorys</div>
                 <div style="padding:12px 14px 14px;">
-                    <span class="skill-pill">🪡 Zellige</span>
-                    <span class="skill-pill">🏺 Pottery</span>
-                    <span class="skill-pill">🧵 Textile</span>
-                    <span class="skill-pill">🔨 Cuivre</span>
-                    <span class="skill-pill">✒️ Calligraphie</span>
-                    <span class="skill-pill">🌿 Tadelakt</span>
-                    <div style="margin-top:10px;">
+                    @foreach ($categorys as $category)
+                    <span class="skill-pill">{{ $category->name }}</span>
+
+                    @endforeach
+
+                    <!-- <div style="margin-top:10px;">
                         <button
                             style="width:100%;font-size:11px;color:var(--saffron);background:none;border:1px dashed rgba(232,160,32,.25);border-radius:10px;padding:6px;cursor:pointer;font-family:'Cinzel',serif;transition:all .2s;"
                             onmouseover="this.style.borderColor='rgba(232,160,32,.5)'"
                             onmouseout="this.style.borderColor='rgba(232,160,32,.25)'">+ Add skill</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

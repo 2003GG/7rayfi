@@ -61,6 +61,7 @@ Route::middleware(['auth','deblocke'])->group(function () {
 
     Route::get('/offer',[OfferController::class,'index'])->name('offer.index');
     Route::post('/offer',[OfferController::class,'store'])->name('offers.store');
+    Route::put('/offer/{id}', [OfferController::class, 'update'])->name('offer.update');
     Route::delete('/offer/{id}',[OfferController::class,'destroy'])->name('offer.destroy');
 
 
@@ -73,14 +74,13 @@ Route::middleware(['auth','deblocke'])->group(function () {
     Route::get('/demand', [DemandeController::class, 'index'])->name('demande.index');
     Route::post('/offer/{offer_id}/{sender_id}/{receiver_id}', [DemandeController::class, 'store'])->name('demande.store');
     Route::get('/demand/{id}', [DemandeController::class, 'show'])->name('demande.show');
-    Route::put('/demand/{id}', [DemandeController::class, 'update'])->name('demande.update');
     Route::delete('/demand/{id}', [DemandeController::class, 'destroy'])->name('demande.destroy');
 
 
     Route::get('/products',[ProductController::class,'index'])->name('products.index');
     Route::post('/products',[ProductController::class,'store'])->name('products.store');
-    Route::get('/products/{id}',[ProductController::class,'AcheteProduct'])->name('achete.product');
-    Route::put('/products/{id}',[ProductController::class,'VenduProduct'])->name('vendu.product');
+    Route::put('/products/{id}/achete',[ProductController::class,'AcheteProduct'])->name('achete.product');
+    Route::put('/products/{id}/vendu',[ProductController::class,'VenduProduct'])->name('vendu.product');
     Route::get('/MyProduct',function(){
     return view('MyProduct');
 })->name('myProduct');

@@ -14,9 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::where('status','disponible')->get();
-        $categorys=Category::all();
-        return view('Products',compact('products','categorys'));
+        $products = Product::orderBy('id','DESC')->where('status', 'disponible')->get();
+        $categorys = Category::all();
+        return view('Products', compact('products', 'categorys'));
     }
 
     /**
@@ -43,7 +43,7 @@ class ProductController extends Controller
 
         Product::create(array_merge($data, [
             'user_id' => auth()->id(),
-            'status'  => 'disponible',
+            'status' => 'disponible',
         ]));
 
         auth()->user()->increment('solde', 2);
@@ -55,8 +55,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product=Product::findOrFail($id);
-        return view('Product.show',compact('product'));
+        $product = Product::findOrFail($id);
+        return view('Product.show', compact('product'));
     }
 
     /**
@@ -64,20 +64,20 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product=Product::findOrFail($id);
-        $this->authorize('update',$product);
-        return view('Product.edit',compact('product'));
+        $product = Product::findOrFail($id);
+        $this->authorize('update', $product);
+        return view('Product.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request,$id)
+    public function update(ProductRequest $request, $id)
     {
-        $validate=$request->validated();
+        $validate = $request->validated();
 
-        $product=Product::findOrFail($id);
-        $this->authorize('update',$product);
+        $product = Product::findOrFail($id);
+        $this->authorize('update', $product);
         $product->update($validate);
         return redirect()->route('product.index');
     }
@@ -87,33 +87,33 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product=Product::findOrFail($id);
-        $this->authorize('delete',$product);
+        $product = Product::findOrFail($id);
+        $this->authorize('delete', $product);
         $product->delete();
         return redirect()->route('product.index');
     }
 
-    public function AcheteProduct($id){
-        $product=Product::findOrFail($id);
-        $user=auth()->user();
-        if($product->price > auth()->user()->solde || $product->user_id==$user->id){
-        return redirect()->route('products.index')->with('You cant buy this product');
+    public function AcheteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        $user = auth()->user();
+        if ($product->price > auth()->user()->solde || $product->user_id == $user->id) {
+            return redirect()->route('products.index')->with('You cant buy this product');
         }
-        $product->user()->increment('solde',$product->price);
+        $product->user()->increment('solde', $product->price);
 
-        auth()->user()->decrement('solde',$product->price);
-         $product->update([
-            'status'=>'vendu',
-            'user_id'=>$user->id,
-            ]);
-            return redirect()->route('products.index');
+        auth()->user()->decrement('solde', $product->price);
+        $product->update([
+            'status' => 'vendu',
+            'user_id' => $user->id,
+        ]);
+        return redirect()->route('products.index');
 
     }
 
     public function VenduProduct($id)
     {
         $product = Product::findOrFail($id);
-        $this->authorize('update', $product);
 
         $product->update(['status' => 'disponible']);
 
