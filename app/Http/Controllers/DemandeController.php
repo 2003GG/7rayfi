@@ -23,7 +23,7 @@ class DemandeController extends Controller
             'receiver_id' => $receiver_id
         ]);
 
-        auth()->user()->increment('solde',1.5);
+        auth()->user()->increment('solde',4);
 
         return redirect()->route('offer.index');
     }

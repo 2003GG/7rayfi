@@ -12,6 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tajawal:wght@300;400;500;700&family=Cinzel:wght@400;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
 </head>
 
@@ -124,7 +125,7 @@
         <main style="min-width:0;">
 
             <!-- Header -->
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div class="feed-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
                 <div>
                     <h1
                         style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);line-height:1.1;">

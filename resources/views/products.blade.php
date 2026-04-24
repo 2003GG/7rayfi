@@ -126,10 +126,8 @@
               </div>
               <div class="product-footer">
                 <div>
-                  <div class="product-price">{{ $product->price}} MAD</div>
-                  @if($product->old_price ?? false)
-                  <div class="product-price-old">{{ $product->old_price }}Points</div>
-                  @endif
+                  <div class="product-price">{{ $product->price}} points</div>
+
                 </div>
                 <form action="{{ route('achete.product',['id'=>$product->id]) }}" method="POST">
                     @csrf

@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function index(){
         $users=User::all()->where('role_id',2);
-    
+
         return view('network',compact('users'));
     }
     public function Blocke($id){

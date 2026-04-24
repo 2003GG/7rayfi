@@ -36,12 +36,12 @@
                   @endif
                 </div>
                 <h1 class="hero-name">{{ auth()->user()->name }}</h1>
-                <p class="hero-headline">{{ auth()->user()->headline ?? 'Artisan · Maroc 🇲🇦' }}</p>
+                <p class="hero-headline"> 'Artisan · Maroc 🇲🇦' </p>
                 <div class="hero-location">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
                   {{ auth()->user()->localisation ?? 'Maroc' }}
                   <span style="margin:0 4px; color:var(--border);">·</span>
-                  <a href="#" style="color:var(--saffron); text-decoration:none; font-size:12px;">500+ relations</a>
+                  <a href="#" style="color:var(--saffron); text-decoration:none; font-size:12px;">{{ auth()->user()->solde }} point</a>
                 </div>
                 <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
                   <span class="badge b-art">✦ Artisan</span>

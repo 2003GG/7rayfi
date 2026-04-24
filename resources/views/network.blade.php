@@ -112,86 +112,88 @@
     }
 
     /* ── Ajax Search ── */
-    function searchUser(query) {
+    // function searchUser(query) {
 
 
-      var resultsDiv = document.getElementById('search-results');
 
-      // Clear results if query too short
-      if (query.length < 2) {
-        searchUser('a'); // search with empty to show all
-        return;
-      }
+    //   var resultsDiv = document.getElementById('search-results');
 
-      // Show loading
-      resultsDiv.innerHTML = `
-        <div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--ink-muted); font-size:13px;">
-          Recherche en cours…
-        </div>
-      `;
+    //   // Clear results if query too short
+    //   if (query.length < 2) {
+    //     searchUser('a'); // search with empty to show all
+    //     return;
+    //   }
 
-      fetch('/network?q=' + encodeURIComponent(query), {
-        method: 'GET',
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        }
-      })
-      .then(response => response.json())
-      .then(data => {   // ✅ Fixed: was .then(data){ which is wrong syntax
+    //   // Show loading
+    //   resultsDiv.innerHTML = `
+    //     <div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--ink-muted); font-size:13px;">
+    //       Recherche en cours…
+    //     </div>
+    //   `;
 
-        var html = '';
+    //   fetch('/network?q=' + encodeURIComponent(query), {
+    //     method: 'GET',
+    //     headers: {
+    //       'X-Requested-With': 'XMLHttpRequest',
+    //       'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+    //     }
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {   // ✅ Fixed: was .then(data){ which is wrong syntax
 
-        // No results
-        if (data.length === 0) {
-          html = `
-            <div class="empty-state" style="grid-column:1/-1;">
-              <p style="font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--ink); margin-bottom:6px;">Aucun résultat</p>
-              <p style="font-size:13px; color:var(--ink-muted);">Aucun membre trouvé pour "${query}"</p>
-            </div>
-          `;
-        }
+    //     var html = '';
+
+    //     // No results
+    //     if (data.length === 0) {
+    //       html = `
+    //         <div class="empty-state" style="grid-column:1/-1;">
+    //           <p style="font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--ink); margin-bottom:6px;">Aucun résultat</p>
+    //           <p style="font-size:13px; color:var(--ink-muted);">Aucun membre trouvé pour "${query}"</p>
+    //         </div>
+    //       `;
+    //     }
 
 
-        data.forEach(user => {
-          var photo = user.profile_photo
-            ? '/image/' + user.profile_photo
-            : '/image/profilDefault.jpg';
+    //     data.forEach(user => {
+    //       var photo = user.profile_photo
+    //         ? '/image/' + user.profile_photo
+    //         : '/image/profilDefault.jpg';
 
-          var banners = [
-            'linear-gradient(135deg,#c1440e,#e8a020)',
-            'linear-gradient(135deg,#3b3fa8,#6b7ff0)',
-            'linear-gradient(135deg,#1a4a2e,#2d8c50)',
-            'linear-gradient(135deg,#7a3b10,#c87832)',
-          ];
-          var bg = banners[data.indexOf(user) % 4];
+    //       var banners = [
+    //         'linear-gradient(135deg,#c1440e,#e8a020)',
+    //         'linear-gradient(135deg,#3b3fa8,#6b7ff0)',
+    //         'linear-gradient(135deg,#1a4a2e,#2d8c50)',
+    //         'linear-gradient(135deg,#7a3b10,#c87832)',
+    //       ];
+    //       var bg = banners[data.indexOf(user) % 4];
 
-          html += `
-            <article class="network-card">
-              <div class="card-banner" style="background:${bg};">
-                <img class="card-avatar" src="${photo}" alt="${user.name}">
-              </div>
-              <div class="card-body">
-                <p class="card-name">${user.name}</p>
-                <p class="card-role">${user.status ?? 'Artisan'}</p>
-                <div class="card-divider"></div>
-                <p style="font-size:11px; color:var(--ink-muted);">Membre depuis ${new Date(user.created_at).toLocaleDateString('fr-FR', {month:'short', year:'numeric'})}</p>
-              </div>
-            </article>
-          `;
-        });
+    //       html += `
+    //         <article class="network-card">
+    //           <div class="card-banner" style="background:${bg};">
+    //             <img class="card-avatar" src="${photo}" alt="${user.name}">
+    //           </div>
+    //           <div class="card-body">
+    //             <p class="card-name">${user.name}</p>
+    //             <p class="card-role">${user.status ?? 'Artisan'}</p>
+    //             <div class="card-divider"></div>
+    //             <p style="font-size:11px; color:var(--ink-muted);">Membre depuis ${new Date(user.created_at).toLocaleDateString('fr-FR', {month:'short', year:'numeric'})}</p>
+    //           </div>
+    //         </article>
+    //       `;
+    //     });
 
-        resultsDiv.innerHTML = html;
-      })
-      .catch(error => {
-        console.error('Search error:', error);
-        resultsDiv.innerHTML = `
-          <div style="grid-column:1/-1; text-align:center; padding:40px; color:#e05555; font-size:13px;">
-            Une erreur est survenue. Réessayez.
-          </div>
-        `;
-      });
-    }
-  </script>
+    //     resultsDiv.innerHTML = html;
+    //   })
+    //   .catch(error => {
+    //     console.error('Search error:', error);
+    //     resultsDiv.innerHTML = `
+    //       <div style="grid-column:1/-1; text-align:center; padding:40px; color:#e05555; font-size:13px;">
+    //         Une erreur est survenue. Réessayez.
+    //       </div>
+    //     `;
+    //   });
+    // }
+
+ </script>
 </body>
 </html>
