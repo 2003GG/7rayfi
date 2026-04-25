@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChatController;
 use App\Models\Comment;
 use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,8 @@ Route::get('/', function () {
 Route::get('/blocke',function(){
     return view('blocke');
 });
+
+
 
 
 
@@ -45,6 +48,8 @@ Route::middleware(['auth','deblocke'])->group(function () {
     Route::put('/profile',[ProfileController::class,'update'])->name('profile.update');
     Route::get('/userProduct/{id}',[ProfileController::class,'UserProfile'])->name('show.profile');
 
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+    Route::post('/send-message', [ChatController::class, 'sendMessage']);
 
 
     Route::get('/dashboard', [PostController::class, 'index'])->name('post.index');

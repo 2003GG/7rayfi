@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('localisation')->nullable();
             $table->text('biographie')->nullable();
+            $table->boolean('isOnline');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

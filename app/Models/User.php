@@ -76,4 +76,7 @@ class User extends Authenticatable
     public function products(){
         return $this->hasMany(Product::class);
     }
+    public function messages(){
+        return $this->hasMany(Message::class);
+    }
 }

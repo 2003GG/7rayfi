@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             OrderSeeder::class,
             PostSeeder::class,
             CategorySeeder::class,
+            MessageSeeder::class,
         ]);
 
 

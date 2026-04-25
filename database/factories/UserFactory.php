@@ -32,6 +32,7 @@ class UserFactory extends Factory
             'condition'=>fake()->randomElement(['blocke','deblocke']),
             'phone_number'=>fake()->phoneNumber(),
             'password' => static::$password ??= Hash::make('password'),
+            'isOnline'=>fake()->randomElement([1,0]),
             'remember_token' => Str::random(10),
         ];
     }
