@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cours;
 use App\Models\Departement;
 use App\Models\Order;
 use App\Models\Post;
@@ -20,38 +21,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(20)->create();
 
-        Post::factory(30)->create();
-        Product::factory(30)->create();
-        Order::factory(12)->create();
+        $this->call([
 
+            OfferSeeder::class,
+            CommentSeeder::class,
+            ProductSeeder::class,
+            CoursSeeder::class,
+            OrderSeeder::class,
+            PostSeeder::class,
+            CategorySeeder::class,
+            MessageSeeder::class,
+        ]);
 
 
         User::factory()->create([
             'name' => 'admin',
-            'role_id'=>4,
-            'departement_id'=>1,
+            'role_id'=>1,
             'email' => 'admin@example.com',
+            'status'=>'client',
+            'condition'=>'deblocke'
         ]);
-        Role::factory()->create([
-            'statu'=>'admin',
-        ],
-        [
-            'statu'=>'manager',
-        ],
-        [
-            'statu'=>'client',
-        ],
-        [
-            'statu'=>'artisan'
-        ]
-        );
+        User::factory(20)->create([
 
-        Departement::factory()->create([
-            'departement'=>'zlayji',
-        ]
-        );
+            'role_id'=>2,
+            'condition'=>'deblocke',
+            ]);
+
+        Role::factory()->create(
+        ['status'=>'admin'],
+       );
+       Role::factory()->create([
+         'status'=>'user',
+       ]);
     }
 }
 
