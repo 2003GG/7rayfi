@@ -48,7 +48,7 @@ Route::middleware(['auth','deblocke'])->group(function () {
     Route::put('/profile',[ProfileController::class,'update'])->name('profile.update');
     Route::get('/userProduct/{id}',[ProfileController::class,'UserProfile'])->name('show.profile');
 
-    Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
     Route::post('/send-message', [ChatController::class, 'sendMessage']);
 
 

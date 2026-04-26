@@ -58,12 +58,12 @@
         </button>
       </a>
 
-      <!-- <a href="">
+      <a href="{{ route('chat.index') }}">
         <button class="nav-icon" title="Messages" style="position:relative;">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span class="nav-badge">3</span>
+          <!-- <span class="nav-badge">3</span> -->
         </button>
-      </a> -->
+      </a>
 
       <a href="{{ route('cours.index') }}" class="nav-icons-secondary">
         <button class="nav-icon" title="Formation" style="position:relative;">

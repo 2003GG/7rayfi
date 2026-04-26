@@ -6,6 +6,7 @@ use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ChatRequest;
 
 class ChatController extends Controller
 {
@@ -14,18 +15,16 @@ class ChatController extends Controller
      */
     public function index(Request $request)
     {
-        $authId = Auth::id();
+        $authId     = Auth::id();
         $receiverId = $request->get('user');
 
-        // Get the selected user (person you're chatting with)
         $receiver = $receiverId ? User::find($receiverId) : null;
 
-        // Get messages between you and the selected user
         $messages = [];
         if ($receiver) {
             $messages = Message::where('sender_id', $authId)
                 ->where('receiver_id', $receiverId)
-                ->orWhere(function($query) use ($authId, $receiverId) {
+                ->orWhere(function ($query) use ($authId, $receiverId) {
                     $query->where('sender_id', $receiverId)
                           ->where('receiver_id', $authId);
                 })
@@ -33,18 +32,16 @@ class ChatController extends Controller
                 ->get();
         }
 
-        // Get all other users for the conversations list
+
         $conversations = User::where('id', '!=', $authId)->get();
 
-        // Get all other users for online users sidebar
+
         $onlineUsers = User::where('id', '!=', $authId)->get();
 
-        // Count total messages
         $totalMessages = Message::where('sender_id', $authId)
             ->orWhere('receiver_id', $authId)
             ->count();
 
-        // Count total conversations (other users)
         $totalConversations = $conversations->count();
 
         return view('chat', compact(
@@ -58,38 +55,30 @@ class ChatController extends Controller
     }
 
     /**
-     * Send a message
+     * Send a message — returns the saved message as JSON (including created_at).
      */
-    public function sendMessage(Request $request)
+    public function sendMessage(ChatRequest $request)
     {
-        // Validate input
-        $request->validate([
-            'receiver_id' => 'required',
-            'message' => 'required',
-        ]);
+        $message=$request->validated();
 
-        // Create the message
-        $message = Message::create([
-            'sender_id' => Auth::id(),
-            'receiver_id' => $request->receiver_id,
-            'message' => $request->message,
-        ]);
+        $message = Message::create(array_merge($message,['sender_id'   => Auth::id()]));
 
-        // Return the message as JSON
-        return response()->json($message);
+
+
+
+        return response()->json($message->fresh());
     }
 
     /**
-     * Get messages for a conversation
+     * Get messages for a conversation (AJAX).
      */
     public function getMessages($userId)
     {
         $authId = Auth::id();
 
-        // Get messages between two users
         $messages = Message::where('sender_id', $authId)
             ->where('receiver_id', $userId)
-            ->orWhere(function($query) use ($authId, $userId) {
+            ->orWhere(function ($query) use ($authId, $userId) {
                 $query->where('sender_id', $userId)
                       ->where('receiver_id', $authId);
             })
