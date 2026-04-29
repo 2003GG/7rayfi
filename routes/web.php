@@ -66,7 +66,7 @@ Route::middleware(['auth','deblocke'])->group(function () {
 
     Route::get('/offer',[OfferController::class,'index'])->name('offer.index');
     Route::post('/offer',[OfferController::class,'store'])->name('offers.store');
-    Route::put('/offer/{id}', [OfferController::class, 'update'])->name('offer.update');
+    Route::patch('/offer', [OfferController::class, 'update'])->name('offer.update');
     Route::delete('/offer/{id}',[OfferController::class,'destroy'])->name('offer.destroy');
 
 
