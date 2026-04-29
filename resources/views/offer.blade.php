@@ -643,7 +643,7 @@
         function openModifyModal(offerId) {
             var input = document.createElement('input');
             input.type = 'hidden';
-            input.name = 'id';
+            input.name = 'id';//
             input.value = offerId;
             document.getElementById('modifyForm').appendChild(input);
             var offer = offersData[offerId];
