@@ -20,7 +20,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-             'user_id'=>fake()->numberBetween(0,10),
+        'user_id'=>fake()->numberBetween(0,10),
         'post_id'=>fake()->numberBetween(0,10),
         'description'=>fake()->text(),
         ];

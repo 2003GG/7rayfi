@@ -70,7 +70,7 @@ class OfferController extends Controller
      */
     public function edit($id)
     {
-       $offer = Offer::findOrFail($id);
+        $offer = Offer::findOrFail($id);
         $this->authorize('update', $offer);
         return view('Offer.edit', compact('offer'));
     }
@@ -78,24 +78,22 @@ class OfferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(OfferRequest $request)
-{
-    $offerId = $request->input('id'); // ✅ get id from hidden input
-    $offer = Offer::findOrFail($offerId);
-    $this->authorize('update', $offer);
+    public function update(OfferRequest $request, $id)
+    {
+        $validate = $request->validated();
+        $offer = Offer::findOrFail($id);
+        $this->authorize('update', $offer);
 
-    $validate = $request->validated();
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            $filename = time() . '.' . $request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->move(public_path('image'), $filename);
+            $validate['photo'] = $filename;
+        }
 
-    if ($request->hasFile('photo')) {
-        $filename = time() . '.' . $request->file('photo')->getClientOriginalExtension();
-        $request->file('photo')->move(public_path('image'), $filename);
-        $validate['photo'] = $filename;
+        $offer->update($validate);
+        return redirect()->route('offer.index');
     }
-
-    $offer->update($validate);
-    return redirect()->route('offer.index');
-}
- 
 
     /**
      * Remove the specified resource from storage.

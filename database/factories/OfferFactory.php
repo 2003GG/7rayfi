@@ -2,33 +2,25 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Offer>
- */
 class OfferFactory extends Factory
 {
-    use HasFactory;
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-
-            'title'=>fake()->name(),
-            'description'=>fake()->text(),
-            'start_date' => fake()->dateTimeBetween('2025-11-02', '2025-11-20'),
-            'end_date'=>fake()->dateTimeBetween('2026-4-15', '2026-10-22'),
-            'photo'=>fake()->url(),
-            'user_id'=>fake()->numberBetween(0,10),
-            'salaire'=>fake()->numberBetween(0,12),
-            'ville'=>fake()->city(),
+            'title'       => fake()->name(),
+            'description' => fake()->paragraph(),
+            'start_date'  => fake()->dateTimeBetween('now', '+1 month'),
+            'end_date'    => fake()->dateTimeBetween('+2 months', '+6 months'),
+            'photo'       => fake()->imageUrl(640, 480, 'business'),
+            'user_id'     => User::factory(),
+            'category_id' => Category::factory(),
+            'salaire'     => fake()->numberBetween(3000, 20000),
+            'ville'       => fake()->city(),
+            'status'      => 'disponible',
         ];
     }
 }

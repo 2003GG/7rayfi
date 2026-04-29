@@ -21,6 +21,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+          User::factory()->create([
+            'name' => 'admin',
+            'role_id'=>1,
+            'email' => 'admin@example.com',
+            'status'=>'client',
+            'condition'=>'deblocke'
+        ]);
 
         $this->call([
 
@@ -32,28 +39,23 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class,
             CategorySeeder::class,
             MessageSeeder::class,
+
         ]);
 
 
-        User::factory()->create([
-            'name' => 'admin',
-            'role_id'=>1,
-            'email' => 'admin@example.com',
-            'status'=>'client',
-            'condition'=>'deblocke'
-        ]);
-        User::factory(20)->create([
 
-            'role_id'=>2,
-            'condition'=>'deblocke',
-            ]);
+    //     User::factory(20)->create([
 
-        Role::factory()->create(
-        ['status'=>'admin'],
-       );
-       Role::factory()->create([
-         'status'=>'user',
-       ]);
+    //         'role_id'=>2,
+    //         'condition'=>'deblocke',
+    //         ]);
+
+    //     Role::factory()->create(
+    //     ['status'=>'admin'],
+    //    );
+    //    Role::factory()->create([
+    //      'status'=>'user',
+    //    ]);
     }
 }
 

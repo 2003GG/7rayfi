@@ -16,21 +16,19 @@ class OfferRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'title'=>'required|string|max:255',
-            'photo'=>'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'start_date'=>'required|date',
-            'end_date'=>'required|date|after:start_date',
-            'ville'=>'required|string|max:255',
-            'salaire'=>'nullable|numeric',
-            'description'=>'nullable|string',
-            'category_id' => 'required|exists:categories,id', 
-
+            'title'       => 'required|string|max:255',
+            'ville'       => 'nullable|string|max:255',      
+            'location'    => 'nullable|string|max:255',
+            'salaire'     => 'nullable|numeric',
+            'description' => 'nullable|string',
+            'photo'       => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'nullable|exists:categories,id',
+            'start_date'  => 'nullable|date',
+            'end_date'    => 'nullable|date',
         ];
     }
 }

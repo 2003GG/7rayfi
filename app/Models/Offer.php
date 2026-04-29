@@ -2,36 +2,43 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
     use HasFactory;
-    protected $fillable=[
-        'user_id',
+
+    protected $fillable = [
         'title',
-        'photo',
-        'start_date',
-        'end_date',
-        'description',
         'ville',
         'salaire',
-        'status',
+        'description',
+        'photo',
         'category_id',
-
-
-
+        'user_id',
+        'start_date',
+        'end_date',
+        'status',
     ];
-    public function user(){
+
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function demandes(){
+    public function demandes()
+    {
         return $this->hasMany(Demande::class);
-}
-    public function category(){
-    return $this->belongsTo(Category::class);
-}
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
