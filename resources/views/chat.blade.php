@@ -12,7 +12,6 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tajawal:wght@300;400;500;700&family=Cinzel:wght@400;600;700&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    {{-- axios not needed; we use fetch --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
@@ -82,7 +81,7 @@
             max-width: 70%;
         }
 
-        .message-wrapper.sent  { align-self: flex-end;  align-items: flex-end; }
+        .message-wrapper.sent     { align-self: flex-end;   align-items: flex-end; }
         .message-wrapper.received { align-self: flex-start; align-items: flex-start; }
 
         .message-bubble {
@@ -158,7 +157,8 @@
             box-shadow: 0 4px 15px rgba(232, 160, 32, 0.3);
         }
 
-        .send-btn:active { transform: scale(0.95); }
+        .send-btn:active  { transform: scale(0.95); }
+        .send-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
         .conversations-list { display: flex; flex-direction: column; }
 
@@ -221,9 +221,9 @@
             padding: 40px;
         }
 
-        .empty-chat-icon    { font-size: 64px; margin-bottom: 20px; opacity: 0.5; }
-        .empty-chat-title   { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-        .empty-chat-text    { font-size: 13px; max-width: 280px; }
+        .empty-chat-icon  { font-size: 64px; margin-bottom: 20px; opacity: 0.5; }
+        .empty-chat-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+        .empty-chat-text  { font-size: 13px; max-width: 280px; }
 
         .search-box { padding: 14px 16px; border-bottom: 1px solid var(--border); }
 
@@ -311,9 +311,6 @@
             border: 2px solid var(--surface1);
             border-radius: 50%;
         }
-
-        /* Sending state */
-        .send-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     </style>
 </head>
 
@@ -336,7 +333,6 @@
             <div class="conversations-list" style="flex:1;overflow-y:auto;" id="conversations-list">
                 @if(isset($conversations) && count($conversations) > 0)
                     @foreach($conversations as $conv)
-                        {{-- FIX: use $conv->id (User model), not $conv->user_id --}}
                         <div class="conversation-item {{ $conv->id == ($receiver->id ?? null) ? 'active' : '' }}"
                              data-user-id="{{ $conv->id }}"
                              data-name="{{ strtolower($conv->name) }}"
@@ -371,7 +367,12 @@
         <main style="min-width:0;">
 
             @if(isset($receiver))
+
+                {{-- ✅ Pass receiver id to JS before the chat container --}}
+                <script>window.RECEIVER_ID = {{ $receiver->id }};</script>
+
                 <div class="chat-container">
+
                     <!-- Chat Header -->
                     <div class="chat-header">
                         <div class="avatar" style="width:46px;height:46px;font-size:15px;background:linear-gradient(135deg,var(--indigo),var(--indigo-lt));">
@@ -380,11 +381,10 @@
                         <div class="chat-user-info">
                             <div class="chat-user-name">{{ $receiver->name }}</div>
                             <div class="chat-user-status">
-                                <span class="status-dot {{ ($receiver->is_online ?? false) ? '' : 'offline' }}"></span>
-                                <span>{{ ($receiver->is_online ?? false) ? 'Online' : 'Last seen recently' }}</span>
+                                <span class="status-dot {{ ($receiver->isOnline ?? false) ? '' : 'offline' }}"></span>
+                                <span>{{ ($receiver->isOnline ?? false) ? 'Online' : 'Last seen recently' }}</span>
                             </div>
                         </div>
-                  
                     </div>
 
                     <!-- Messages Area -->
@@ -418,27 +418,26 @@
                                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
                             </svg>
                         </button>
+
                         <input type="text" class="chat-input" id="message-input"
                                placeholder="Type a message…"
                                onkeydown="handleKeyDown(event)"
                                autocomplete="off">
+
                         <button style="width:40px;height:40px;border-radius:50%;background:var(--surface3);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);transition:all 0.2s;"
                                 onmouseover="this.style.borderColor='rgba(232,160,32,0.5)'"
                                 onmouseout="this.style.borderColor='var(--border)'">
                             <span style="font-size:18px;">😊</span>
                         </button>
+
                         <button class="send-btn" onclick="sendMessage()" id="send-btn">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0e0b08" stroke-width="2.5">
                                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
                             </svg>
                         </button>
                     </div>
-                </div>
 
-                {{-- Pass receiver id to JS --}}
-                <script>
-                    window.RECEIVER_ID = {{ $receiver->id }};
-                </script>
+                </div>
 
             @else
                 <!-- Empty State -->
@@ -447,12 +446,6 @@
                         <div class="empty-chat-icon">💬</div>
                         <div class="empty-chat-title">Select a Conversation</div>
                         <p class="empty-chat-text">Choose a contact from the list to start messaging, or find new people to connect with.</p>
-                        <button class="btn-create" style="margin-top:20px;">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <path d="M12 5v14M5 12h14"/>
-                            </svg>
-                            New Conversation
-                        </button>
                     </div>
                 </div>
             @endif
@@ -576,8 +569,6 @@
 
         // ══════════════════════════════════════════════════
         //  CONVERSATION SELECTION
-        //  Navigates to /chat?user=<id> — the controller
-        //  then loads the right messages server-side.
         // ══════════════════════════════════════════════════
         function selectConversation(userId) {
             window.location.href = '/chat?user=' + userId;
@@ -589,7 +580,6 @@
         function filterConversations(query) {
             var q     = query.trim().toLowerCase();
             var items = document.querySelectorAll('#conversations-list .conversation-item');
-
             items.forEach(function (item) {
                 var name = (item.dataset.name || '').toLowerCase();
                 item.style.display = (q === '' || name.includes(q)) ? '' : 'none';
@@ -597,26 +587,26 @@
         }
 
         // ══════════════════════════════════════════════════
-        //  SEND MESSAGE
+        //  SEND MESSAGE  ✅ merged from simple chat blade
         // ══════════════════════════════════════════════════
-        var CSRF_TOKEN  = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        var receiverId  = window.RECEIVER_ID || null;   // set inline above when a receiver exists
+        var CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        var receiverId = window.RECEIVER_ID || null;
 
         function sendMessage() {
-            var input   = document.getElementById('message-input');
-            var text    = input.value.trim();
+            var input = document.getElementById('message-input');
+            var text  = input ? input.value.trim() : '';
 
             if (!text || !receiverId) return;
 
             var btn = document.getElementById('send-btn');
-            btn.disabled = true;
+            if (btn) btn.disabled = true;
 
             fetch('/send-message', {
                 method:  'POST',
                 headers: {
-                    'Content-Type':  'application/json',
-                    'X-CSRF-TOKEN':  CSRF_TOKEN,
-                    'Accept':        'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': CSRF_TOKEN,
+                    'Accept':       'application/json',
                 },
                 body: JSON.stringify({
                     receiver_id: receiverId,
@@ -627,61 +617,57 @@
                 if (!res.ok) throw new Error('Request failed: ' + res.status);
                 return res.json();
             })
-            .then(function (msg) {
-                // Clear input
+            .then(function (data) {
                 input.value = '';
-
-                // Append bubble optimistically using the server-confirmed data
-                appendMessage(msg.message, 'sent', formatTime(msg.created_at));
-
-                // Update the conversation preview in the sidebar
-                updateConversationPreview(receiverId, msg.message);
+                // ✅ handle both {message: "text"} and {message: {message: "text", created_at: ...}}
+                var msgText = typeof data.message === 'object' ? data.message.message : data.message;
+                var msgTime = data.message && data.message.created_at ? formatTime(data.message.created_at) : formatTime(new Date().toISOString());
+                appendMessage(msgText, 'sent', msgTime);
+                updateConversationPreview(receiverId, msgText);
             })
             .catch(function (err) {
                 console.error('Send failed:', err);
                 alert('Could not send message. Please try again.');
             })
             .finally(function () {
-                btn.disabled = false;
-                input.focus();
+                if (btn) btn.disabled = false;
+                if (input) input.focus();
             });
         }
 
         // ══════════════════════════════════════════════════
-        //  APPEND A NEW MESSAGE BUBBLE TO THE CHAT AREA
+        //  APPEND MESSAGE BUBBLE
         // ══════════════════════════════════════════════════
         function appendMessage(text, type, time) {
-            var area    = document.getElementById('messages-area');
+            var area = document.getElementById('messages-area');
             if (!area) return;
 
             var wrapper = document.createElement('div');
             wrapper.className = 'message-wrapper ' + type;
 
-            var bubble  = document.createElement('div');
-            bubble.className = 'message-bubble';
+            var bubble = document.createElement('div');
+            bubble.className   = 'message-bubble';
             bubble.textContent = text;
 
-            var ts      = document.createElement('div');
-            ts.className = 'message-time';
+            var ts = document.createElement('div');
+            ts.className   = 'message-time';
             ts.textContent = time || '';
 
             wrapper.appendChild(bubble);
             wrapper.appendChild(ts);
             area.appendChild(wrapper);
-
-            // Scroll to bottom
             area.scrollTop = area.scrollHeight;
         }
 
         // ══════════════════════════════════════════════════
-        //  UPDATE PREVIEW TEXT IN THE CONVERSATION LIST
+        //  UPDATE SIDEBAR PREVIEW
         // ══════════════════════════════════════════════════
         function updateConversationPreview(userId, lastMessage) {
             var item = document.querySelector('.conversation-item[data-user-id="' + userId + '"]');
             if (!item) return;
             var preview = item.querySelector('.conversation-preview');
             if (preview) preview.textContent = lastMessage;
-            var timEl   = item.querySelector('.conversation-time');
+            var timEl = item.querySelector('.conversation-time');
             if (timEl)  timEl.textContent = formatTime(new Date().toISOString());
         }
 
@@ -703,12 +689,23 @@
         }
 
         // ══════════════════════════════════════════════════
-        //  AUTO-SCROLL to bottom on page load
+        //  AUTO-SCROLL on load
         // ══════════════════════════════════════════════════
         document.addEventListener('DOMContentLoaded', function () {
             var area = document.getElementById('messages-area');
             if (area) area.scrollTop = area.scrollHeight;
         });
+
+        // ══════════════════════════════════════════════════
+        //  REAL-TIME — Echo listener (if Laravel Echo is set up)
+        //  Uncomment when pusher/echo is configured
+        // ══════════════════════════════════════════════════
+        // var authId = {{ Auth::id() }};
+        // Echo.private(`chat.${authId}`)
+        //     .listen('MessageSent', function (e) {
+        //         appendMessage(e.message.message, 'received', formatTime(e.message.created_at));
+        //         updateConversationPreview(e.message.sender_id, e.message.message);
+        //     });
     </script>
 
 </body>

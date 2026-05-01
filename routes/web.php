@@ -49,7 +49,9 @@ Route::middleware(['auth','deblocke'])->group(function () {
     Route::get('/userProduct/{id}',[ProfileController::class,'UserProfile'])->name('show.profile');
 
     Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/messages/{userId}', [ChatController::class, 'getMessages']);
     Route::post('/send-message', [ChatController::class, 'sendMessage']);
+
 
 
     Route::get('/dashboard', [PostController::class, 'index'])->name('post.index');

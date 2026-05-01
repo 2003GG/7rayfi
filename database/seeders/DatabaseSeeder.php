@@ -31,31 +31,31 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
 
-            OfferSeeder::class,
-            CommentSeeder::class,
-            ProductSeeder::class,
-            CoursSeeder::class,
-            OrderSeeder::class,
-            PostSeeder::class,
+            // OfferSeeder::class,
+            // CommentSeeder::class,
+            // ProductSeeder::class,
+            // CoursSeeder::class,
+            // OrderSeeder::class,
+            // PostSeeder::class,
             CategorySeeder::class,
-            MessageSeeder::class,
+            // MessageSeeder::class,
 
         ]);
 
 
 
-    //     User::factory(20)->create([
+        User::factory(20)->create([
 
-    //         'role_id'=>2,
-    //         'condition'=>'deblocke',
-    //         ]);
+            'role_id'=>2,
+            'condition'=>'deblocke',
+            ]);
 
-    //     Role::factory()->create(
-    //     ['status'=>'admin'],
-    //    );
-    //    Role::factory()->create([
-    //      'status'=>'user',
-    //    ]);
+        Role::factory()->create(
+        ['status'=>'admin'],
+       );
+       Role::factory()->create([
+         'status'=>'user',
+       ]);
     }
 }
 
