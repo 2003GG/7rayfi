@@ -94,22 +94,21 @@ class ProductController extends Controller
     }
 
     public function AcheteProduct($id)
-    {
-        $product = Product::findOrFail($id);
-        $user = auth()->user();
-        if ($product->price > auth()->user()->solde || $product->user_id == $user->id) {
-            return redirect()->route('products.index')->with('You cant buy this product');
-        }
-        $product->user()->increment('solde', $product->price);
+{
+    $product = Product::findOrFail($id);
+    $user = auth()->user();
 
-        auth()->user()->decrement('solde', $product->price);
-        $product->update([
-            'status' => 'vendu',
-            'user_id' => $user->id,
-        ]);
-        return redirect()->route('products.index');
 
+    if ($user->solde < $product->price) {
+        return redirect()->route('products.index')->with('error', 'Insufficient balance to buy this product.');
     }
+
+    $product->user()->increment('solde', $product->price);
+    $user->decrement('solde', $product->price);
+    $product->update(['status' => 'vendu', 'user_id' => $user->id]);
+
+    return redirect()->route('products.index')->with('success', 'Product purchased successfully!');
+}
 
     public function VenduProduct($id)
     {

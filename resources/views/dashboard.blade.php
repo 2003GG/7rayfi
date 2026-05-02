@@ -19,7 +19,7 @@
 <body>
 
     <!-- ══════════ NAVBAR ══════════ -->
-      @include('layouts/header')
+    @include('layouts/header')
 
 
     <!-- ══════════ 4-COLUMN GRID ══════════ -->
@@ -37,7 +37,7 @@
                 <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>categorys</div>
                 <div style="padding:12px 14px 14px;">
                     @foreach ($categorys as $category)
-                    <span class="skill-pill">{{ $category->name }}</span>
+                        <span class="skill-pill">{{ $category->name }}</span>
 
                     @endforeach
 
@@ -125,7 +125,8 @@
         <main style="min-width:0;">
 
             <!-- Header -->
-            <div class="feed-header" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+            <div class="feed-header"
+                style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
                 <div>
                     <h1
                         style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--ink);line-height:1.1;">
@@ -198,7 +199,6 @@
                                                 @else
                                                 @endif
                                             </form>
-                                            <button type="button" class="kitem">🔖 Save post</button>
                                             <form action="{{ route('post.report', ['id' => $post->id]) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
@@ -222,7 +222,6 @@
                     @endif
 
                     <div class="pstats">
-                        <span>👍 {{ $post->likes_count ?? 0 }} likes</span>
                         <div style="display:flex;gap:14px;">
                             <span>💬 <a href="{{ route('comments.show', $post->id) }}">{{ $post->comments->count() ?? 0 }}
                                     comments</a></span>
@@ -232,7 +231,6 @@
 
                     <div class="pacts">
 
-                        <button type="button" class="pact"><span class="pac-ico">👍</span> Like</button>
                         <button type="button" class="pact" onclick="toggleComment('comment-{{ $post->id }}')">
                             <span class="pac-ico">💬</span> Comment
                         </button>
