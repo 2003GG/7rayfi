@@ -301,48 +301,7 @@
     @endforeach
 
     <!-- Static demo card -->
-    <article class="course-card">
-      <div class="card-accent accent-ocean"></div>
-      <div class="course-thumb-wrap">
-        <div class="course-thumb-placeholder" style="background:linear-gradient(135deg,var(--indigo),var(--indigo-lt));">🪡</div>
-        <div class="level-badge" style="border-color:rgba(107,127,240,0.4); color:var(--indigo-lt);">Intermédiaire</div>
-      </div>
-      <div class="course-body">
-        <div>
-          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
-            <div>
-              <span class="cat-tag">Zellige</span>
-              <span style="font-size:11px; color:var(--ink-muted);">· 8h 15min</span>
-              <h3 class="course-title">Maîtriser l'Art du Zellige Marocain</h3>
-              <p style="font-size:13px; color:var(--ink-muted);">par Hassan El Fassi</p>
-            </div>
-            <div style="text-align:right; flex-shrink:0;">
-              <p style="font-family:'Cinzel',serif; font-size:16px; color:var(--saffron);">350 MAD</p>
-            </div>
-          </div>
-          <p style="font-size:13px; color:var(--ink-dim); line-height:1.7; margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
-            Apprenez les techniques ancestrales du zellige de Fès, de la coupe à la pose, avec un maître artisan reconnu.
-          </p>
-        </div>
-        <div style="margin-top:14px;">
-          <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
-          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-            <div style="display:flex; align-items:center; gap:14px;">
-              <div style="display:flex; align-items:center; gap:4px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" class="star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                <span style="font-size:12px; color:var(--ink); font-weight:500;">4.9</span>
-                <span style="font-size:11px; color:var(--ink-muted);">(89)</span>
-              </div>
-              <div style="display:flex; align-items:center; gap:4px;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-muted)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-                <span style="font-size:11px; color:var(--ink-muted);">210 étudiants</span>
-              </div>
-            </div>
-            <button class="btn-apply">Voir le cours →</button>
-          </div>
-        </div>
-      </div>
-    </article>
+    
 
     @if($courses->isEmpty())
     <div style="background:linear-gradient(145deg,var(--card-bg1),var(--card-bg2)); border:1px solid var(--border); border-radius:18px; text-align:center; padding:64px 24px;">
