@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 class GoogleController extends Controller
 {
     // Redirect to Google
+
     public function redirect()
     {
         return Socialite::driver('google')
