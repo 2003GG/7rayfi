@@ -14,7 +14,6 @@ use App\Http\Controllers\ChatController;
 use App\Models\Comment;
 use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Support\Facades\Route;
-use Pest\Plugins\Profile;
 
 Route::get('/', function () {
     return view('welcome');
