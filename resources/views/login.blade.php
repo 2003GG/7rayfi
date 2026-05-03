@@ -3,246 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Professional Network</title>
+    <title>Sign In — 7RAYFI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#c9a84c',
+                        'gold-light': '#e8c97a',
+                        ink: '#0b0c10',
+                        surface: '#111318',
+                        surface2: '#1a1d24',
+                        surface3: '#22262f',
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        dm: ['DM Sans', 'sans-serif'],
+                    },
+                    keyframes: {
+                        fadeUp:  { '0%': { opacity: '0', transform: 'translateY(18px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeIn:  { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                    },
+                    animation: {
+                        'fade-up':       'fadeUp 0.6s ease both',
+                        'fade-up-slow':  'fadeUp 0.6s 0.14s ease both',
+                        'fade-in':       'fadeIn 0.5s ease both',
+                    },
+                }
+            }
         }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        .fade-in { animation: fadeIn 0.6s ease-out; }
-        .slide-in { animation: slideIn 0.8s ease-out; }
-        .gradient-bg {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-        }
-        .glass-effect {
-            background: rgba(30, 30, 46, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        input:focus {
-            transform: translateY(-2px);
-            transition: all 0.3s ease;
-        }
-        .glow-effect {
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-        }
-    </style>
+    </script>
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 </head>
-<body class="min-h-screen flex items-center justify-center gradient-bg p-4">
-    <div class="w-full max-w-6xl grid md:grid-cols-2 gap-8 items-center">
-        <!-- Left Side - Branding & Info -->
-        <div class="text-white space-y-6 slide-in hidden md:block">
-            
-                    <!-- <span class="text-white font-bold text-2xl">in</span> -->
-                     <img src="7rayfilogo.png" alt="" class="h-20">
-                     
-               <div class="flex items-center gap-3 mb-8">
-                <span class="text-3xl font-bold">Professional Network</span>
-            </div>
-            
-            <h1 class="text-5xl font-bold leading-tight bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                Welcome back to your professional community
-            </h1>
-            
-            <p class="text-xl text-gray-300">
-                Connect with professionals, discover opportunities, and grow your career.
-            </p>
-            
-            <div class="space-y-4 pt-6">
-                <div class="flex items-center gap-4 p-4 bg-white bg-opacity-5 rounded-xl backdrop-blur-sm border border-white border-opacity-10 hover:bg-opacity-10 transition">
-                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg text-white">500M+ Members</h3>
-                        <p class="text-gray-400">Join millions of professionals</p>
-                    </div>
+<body class="bg-ink text-gray-200 min-h-screen">
+<div class="flex min-h-screen relative z-10">
+
+    {{-- SIDEBAR --}}
+
+    {{-- MAIN CONTENT --}}
+    <main class="flex-1 flex items-center justify-center p-6 md:p-12">
+        <div class="w-full max-w-5xl grid md:grid-cols-2 gap-16 items-center">
+
+            {{-- LEFT BRAND --}}
+            <div class="hidden md:block animate-fade-up font-dm">
+                <img src="{{ asset('image/logo.png') }}" alt="7RAYFI" class="h-20 w-20 mb-10 object-contain brightness-110">
+                <h1 class="font-syne text-[2.6rem] xl:text-5xl font-extrabold leading-[1.08] tracking-tight text-white mb-4">
+                    Welcome back<br>to your<br><span class="text-gold">professional</span><br>community
+                </h1>
+                <p class="text-gray-500 text-sm leading-relaxed mb-10 max-w-xs font-light">
+                    Connect with decision-makers, discover premium opportunities, and grow within a network built for professionals.
+                </p>
+                <div class="flex gap-8 mb-10">
+                    <div><div class="font-syne text-xl font-bold text-gold">500M+</div><div class="text-[10px] text-gray-600 uppercase tracking-[0.12em] mt-0.5">Members</div></div>
+                    <div><div class="font-syne text-xl font-bold text-gold">10M+</div><div class="text-[10px] text-gray-600 uppercase tracking-[0.12em] mt-0.5">Jobs</div></div>
+                    <div><div class="font-syne text-xl font-bold text-gold">190+</div><div class="text-[10px] text-gray-600 uppercase tracking-[0.12em] mt-0.5">Countries</div></div>
                 </div>
-                
-                <div class="flex items-center gap-4 p-4 bg-white bg-opacity-5 rounded-xl backdrop-blur-sm border border-white border-opacity-10 hover:bg-opacity-10 transition">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-                            <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="font-semibold text-lg text-white">10M+ Jobs</h3>
-                        <p class="text-gray-400">Discover your next opportunity</p>
-                    </div>
+                <div class="space-y-3 text-sm text-gray-500 font-light">
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0 shadow-[0_0_8px_#c9a84c]"></span>Build your professional reputation</div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0 shadow-[0_0_8px_#c9a84c]"></span>Get discovered by top recruiters</div>
+                    <div class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0 shadow-[0_0_8px_#c9a84c]"></span>Access curated learning resources</div>
                 </div>
             </div>
-        </div>
 
-        <!-- Right Side - Login Form -->
-        <div class="glass-effect rounded-2xl shadow-2xl p-8 md:p-12 fade-in">
-            <div class="mb-8">
-                <h2 class="text-3xl font-bold text-white mb-2">Sign in</h2>
-                <p class="text-gray-400">Stay updated on your professional world</p>
-            </div>
+            {{-- FORM CARD --}}
+            <div class="card-gold-line relative bg-surface border border-white/[0.07] rounded-2xl p-8 md:p-10 animate-fade-up-slow overflow-hidden font-dm">
+                <div class="absolute -top-20 -right-14 w-52 h-52 rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 70%)"></div>
 
-            <form id="loginForm" class="space-y-6">
-                <!-- Email Input -->
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
-                        Email or Phone
-                    </label>
-                    <input 
-                        type="text" 
-                        id="email" 
-                        name="email"
-                        class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition placeholder-gray-500"
-                        placeholder="Enter your email"
-                        required
-                    >
+                <h2 class="font-syne text-2xl font-bold tracking-tight text-white mb-1">Sign in</h2>
+                <p class="text-gray-500 text-sm mb-7">Stay updated on your professional world</p>
+
+                @if ($errors->any())
+                <div class="bg-red-950/40 border border-red-700/40 rounded-xl p-3 mb-5 text-sm text-red-300 space-y-0.5">
+                    @foreach ($errors->all() as $e)<div>{{ $e }}</div>@endforeach
                 </div>
+                @endif
+                @if (session('error'))
+                <div class="bg-red-950/40 border border-red-700/40 rounded-xl p-3 mb-5 text-sm text-red-300">{{ session('error') }}</div>
+                @endif
 
-                <!-- Password Input -->
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-300 mb-2">
-                        Password
-                    </label>
-                    <div class="relative">
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password"
-                            class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 text-white rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition pr-12 placeholder-gray-500"
-                            placeholder="Enter your password"
-                            required
-                        >
-                        <button 
-                            type="button"
-                            onclick="togglePassword()"
-                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
-                        >
-                            <svg id="eyeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                            </svg>
-                        </button>
+                <form method="POST" action="{{ route('user.login') }}" id="loginForm">
+                    @csrf
+                    {{-- Email --}}
+                    <div class="mb-4">
+                        <label class="block text-[11px] font-medium text-gray-500 uppercase tracking-[0.1em] mb-2">Email Address</label>
+                        <input type="email" name="email" value="" autocomplete="email" placeholder="you@example.com" required
+                            class="w-full bg-surface2 border @error('email') border-red-600/50 @else border-white/[0.07] @enderror rounded-xl px-4 py-3 text-sm text-gray-200 transition-all duration-200 hover:border-gold/30">
                     </div>
-                </div>
-
-                <!-- Remember Me & Forgot Password -->
-                <div class="flex items-center justify-between">
-                    <label class="flex items-center">
-                        <input 
-                            type="checkbox" 
-                            class="w-4 h-4 text-purple-500 bg-gray-800 border-gray-700 rounded focus:ring-purple-500"
-                        >
-                        <span class="ml-2 text-sm text-gray-300">Remember me</span>
-                    </label>
-                    <a href="#" class="text-sm text-purple-400 hover:text-purple-300 font-medium">
-                        Forgot password?
-                    </a>
-                </div>
-
-                <!-- Sign In Button -->
-                <button 
-                    type="submit"
-                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition duration-300 shadow-lg glow-effect"
-                >
-                    Sign in
-                </button>
-
-                <!-- Divider -->
-                <div class="relative my-6">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-gray-700"></div>
+                    {{-- Password --}}
+                    <div class="mb-5">
+                        <label class="block text-[11px] font-medium text-gray-500 uppercase tracking-[0.1em] mb-2">Password</label>
+                        <div class="relative">
+                            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required
+                                class="w-full bg-surface2 border border-white/[0.07] rounded-xl px-4 py-3 pr-11 text-sm text-gray-200 transition-all duration-200 hover:border-gold/30">
+                            <button type="button" onclick="togglePassword()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gold transition-colors">
+                                <svg id="eyeIcon" class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-4 bg-gray-900 text-gray-400">or</span>
-                    </div>
-                </div>
+                    {{-- Remember / Forgot --}}
 
-                <!-- Social Login Buttons -->
-                <div class="space-y-3">
-                    <button 
-                        type="button"
-                        class="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg hover:bg-gray-700 transition font-medium text-gray-300"
-                    >
-                        <svg class="w-5 h-5" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"></path>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"></path>
-                        </svg>
-                        Sign in with Google
+                    {{-- Submit --}}
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-gold text-ink font-syne font-bold text-sm uppercase tracking-[0.07em] py-3.5 rounded-xl transition-all duration-200 hover:bg-gold-light hover:-translate-y-px hover:shadow-[0_6px_24px_rgba(201,168,76,0.3)] active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Sign In
                     </button>
+                </form>
 
-                    <button 
-                        type="button"
-                        class="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg hover:bg-gray-700 transition font-medium text-gray-300"
-                    >
-                        <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M11.4 24H7.6V8.8h3.8V24zM9.5 7.2c-1.2 0-2.2-1-2.2-2.2s1-2.2 2.2-2.2 2.2 1 2.2 2.2-1 2.2-2.2 2.2zM24 24h-3.8v-7.4c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V24h-3.8V8.8h3.7v2.1h.1c.5-1 1.8-2 3.6-2 3.9 0 4.6 2.6 4.6 5.9V24z"></path>
-                        </svg>
-                        Sign in with Microsoft
+                {{-- Divider --}}
+                <div class="flex items-center gap-3 my-6">
+                    <div class="flex-1 h-px bg-white/[0.06]"></div>
+                    <span class="text-xs text-gray-600 tracking-wider">or continue with</span>
+                    <div class="flex-1 h-px bg-white/[0.06]"></div>
+                </div>
+
+                {{-- Social --}}
+                <div class="grid grid-cols-2 gap-3 mb-7">
+
+                        <a href="{{ route('auth.google') }}" class="flex items-center justify-center gap-2 py-2.5 bg-surface2 border border-white/[0.07] rounded-xl text-gray-400 text-sm font-medium hover:border-gold/25 hover:text-gray-200 transition-all duration-200">
+            <svg class="w-[17px] h-[17px] flex-shrink-0" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Google
+        </a>
+                    <button class="flex items-center justify-center gap-2 py-2.5 bg-surface2 border border-white/[0.07] rounded-xl text-gray-400 text-sm font-medium hover:border-gold/25 hover:text-gray-200 transition-all duration-200">
+                        <svg class="w-[17px] h-[17px] flex-shrink-0" fill="#60a5fa" viewBox="0 0 24 24"><path d="M11.4 24H7.6V8.8h3.8V24zM9.5 7.2c-1.2 0-2.2-1-2.2-2.2s1-2.2 2.2-2.2 2.2 1 2.2 2.2-1 2.2-2.2 2.2zM24 24h-3.8v-7.4c0-1.4 0-3.2-2-3.2s-2.2 1.5-2.2 3.1V24h-3.8V8.8h3.7v2.1h.1c.5-1 1.8-2 3.6-2 3.9 0 4.6 2.6 4.6 5.9V24z"/></svg>
+                        LinkedIn
                     </button>
                 </div>
-            </form>
 
-            <!-- Sign Up Link -->
-            <div class="mt-8 text-center">
-                <p class="text-gray-400">
-                    New to Professional Network? 
-                    <a href="#" class="text-purple-400 hover:text-purple-300 font-semibold">
-                        Join now
-                    </a>
+                <p class="text-center text-sm text-gray-500">
+                    New to 7RAYFI?
+                    <a href="{{ route('signup') }}" class="text-gold font-semibold hover:text-gold-light transition-colors ml-1">Create account</a>
                 </p>
             </div>
         </div>
+    </main>
+</div>
 
-        <!-- Mobile Branding -->
-        <div class="md:hidden text-white text-center space-y-4 slide-in">
-            <div class="flex items-center justify-center gap-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg glow-effect">
-                    <span class="text-white font-bold text-xl">in</span>
-                </div>
-                <span class="text-2xl font-bold">Professional Network</span>
-            </div>
-            <p class="text-gray-300">Connect. Grow. Succeed.</p>
-        </div>
-    </div>
-
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eyeIcon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>';
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>';
-            }
-        }
-
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Add loading state
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Signing in...';
-            submitBtn.disabled = true;
-            
-            // Simulate login process
-            setTimeout(() => {
-                alert('Login functionality would connect to your backend here!');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
-    </script>
+<script>
+function togglePassword() {
+    const input = document.getElementById('password');
+    const icon = document.getElementById('eyeIcon');
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    icon.innerHTML = show
+        ? `<path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/>`
+        : `<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>`;
+}
+document.getElementById('loginForm').addEventListener('submit', function() {
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Signing in…';
+    btn.disabled = true;
+});
+</script>
 </body>
 </html>

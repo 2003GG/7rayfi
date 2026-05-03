@@ -15,7 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('price');
-            $table->string('description');
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->text('description');
+            $table->foreignId('order_id')->nullable()->constrained();
+            $table->foreignId('category_id')->default(null)->constrained();
+            $table->enum('status',['disponible','vendu'])->default('disponible');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

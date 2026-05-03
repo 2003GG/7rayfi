@@ -12,7 +12,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(\GuzzleHttp\Client::class, function () {
+            return new \GuzzleHttp\Client([
+                'verify' => false,
+            ]);
+        });
     }
 
     /**
@@ -22,4 +26,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
     }
+
 }
