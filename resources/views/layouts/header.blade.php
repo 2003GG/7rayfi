@@ -3,17 +3,17 @@
 
     <!-- Logo -->
     <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-      <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--clay),var(--saffron));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(193,68,14,.4);">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0e0b08" stroke-width="2.5"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/><polyline points="12,2 12,22"/><line x1="2" y1="8.5" x2="22" y2="8.5"/><line x1="2" y1="15.5" x2="22" y2="15.5"/></svg>
-      </div>
+      <div style="width: 60px;px;height:60px;border-radius:10px;background:linear-gradient(135deg,var(--clay),var(--saffron));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(193,68,14,.4);">
+      <img src="{{ asset('image/logo.png') }}" alt="">
+    </div>
       <span class="logo-text">7RAYFI</span>
     </div>
 
     <!-- Search (hidden on very small screens via CSS) -->
-    <div class="nav-search-wrap">
+    <!-- <div class="nav-search-wrap">
       <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-muted);" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="text" placeholder="Search artisans, skills, posts…" class="search-bar" />
-    </div>
+    </div> -->
 
     <!-- Desktop / Tablet Icons -->
     <div class="nav-icons-group">

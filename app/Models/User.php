@@ -32,7 +32,6 @@ class User extends Authenticatable
         'localisation',
         'isOnline',
         'solde',
-        'avatar',     
     ];
 
     protected $hidden = [
