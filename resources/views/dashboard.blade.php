@@ -51,7 +51,7 @@
             </div>
 
             <!-- Upcoming Events -->
-            <div class="card" style="margin-bottom:14px;">
+            <!-- <div class="card" style="margin-bottom:14px;">
                 <div class="card-accent accent-ocean"></div>
                 <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>Events</div>
                 <div class="ev-item">
@@ -87,10 +87,10 @@
                 <div style="padding:10px 16px;"><button
                         style="width:100%;text-align:center;font-size:11px;color:var(--copper-lt);background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;">View
                         all events →</button></div>
-            </div>
+            </div> -->
 
             <!-- Featured Jobs -->
-            <div class="card" style="margin-bottom:14px;">
+            <!-- <div class="card" style="margin-bottom:14px;">
                 <div class="card-accent accent-ocean"></div>
                 <div class="card-header card-header-ocean"><span class="bar bar-ocean"></span>Featured Jobs</div>
                 <div class="job-item">
@@ -117,7 +117,7 @@
                 <div style="padding:10px 16px;"><button
                         style="width:100%;text-align:center;font-size:11px;color:var(--copper-lt);background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;">See
                         all jobs →</button></div>
-            </div>
+            </div> -->
 
         </aside>
 
@@ -273,36 +273,20 @@
             <div class="card" style="margin-bottom:14px;">
                 <div class="card-accent accent-fire"></div>
                 <div class="card-header card-header-fire"><span class="bar bar-fire"></span>People You May Know</div>
+               @foreach ($users as $user)
+
+
                 <div class="follow-item">
                     <div class="avatar"
                         style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,var(--indigo),var(--indigo-lt));">
-                        YB</div>
+                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</div>
                     <div>
-                        <div class="fn">Yassine Benali</div>
-                        <div class="fs">Zellige · Fès</div>
+                        <div class="fn">{{ $user->name }}</div>
+                        <div class="fs">{{ $user->localisation }}</div>
                     </div>
-                    <button class="btn-fol">+ Follow</button>
                 </div>
-                <div class="follow-item">
-                    <div class="avatar"
-                        style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,var(--sage),#2d5c3e);">
-                        FM</div>
-                    <div>
-                        <div class="fn">Fatima Mrabet</div>
-                        <div class="fs">Textile · Marrakech</div>
-                    </div>
-                    <button class="btn-fol">+ Follow</button>
-                </div>
-                <div class="follow-item">
-                    <div class="avatar"
-                        style="width:36px;height:36px;font-size:12px;background:linear-gradient(135deg,var(--copper),var(--clay));">
-                        AO</div>
-                    <div>
-                        <div class="fn">Amine Ouahbi</div>
-                        <div class="fs">Leather · Meknès</div>
-                    </div>
-                    <button class="btn-fol">+ Follow</button>
-                </div>
+                @endforeach
+
                 <div style="padding:10px 16px 14px;"><button
                         style="width:100%;text-align:center;font-size:11px;color:var(--saffron);background:none;border:none;cursor:pointer;font-family:'Cinzel',serif;">View
                         all suggestions →</button></div>
