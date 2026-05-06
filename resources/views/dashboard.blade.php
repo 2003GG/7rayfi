@@ -285,6 +285,7 @@
                         <div class="fs">{{ $user->localisation }}</div>
                     </div>
                 </div>
+                <!--  -->
                 @endforeach
 
                 <div style="padding:10px 16px 14px;"><button
