@@ -401,12 +401,12 @@
                         <textarea name="description" rows="4" maxlength="3000" required
                             placeholder="What do you want to share with your network?" class="fi fta"></textarea>
                     </div>
-                    <div style="margin-bottom:16px;">
+                    <!-- <div style="margin-bottom:16px;">
                         <label class="fl">Tags <span
                                 style="color:var(--ink-muted);text-transform:none;letter-spacing:0;font-weight:400;">—
                                 comma separated</span></label>
                         <input type="text" name="tags" placeholder="e.g. Zellige, RemoteWork, Marrakech" class="fi" />
-                    </div>
+                    </div> -->
                     <div style="margin-bottom:8px;">
                         <label class="fl">Media</label>
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -423,7 +423,7 @@
                                 <input type="file" name="photo_URL" id="photo-input" accept="image/*" class="hidden"
                                     onchange="previewMedia(this,'image')">
                             </label>
-                            <label class="upz" style="border-color:var(--border);">
+                            <!-- <label class="upz" style="border-color:var(--border);">
                                 <div class="upi" style="background:var(--surface3);"><svg width="20" height="20"
                                         viewBox="0 0 24 24" fill="none" stroke="var(--ink-dim)" stroke-width="1.6">
                                         <rect x="2" y="5" width="15" height="14" rx="2" />
@@ -434,7 +434,7 @@
                                 <span style="font-size:10px;color:var(--ink-muted);">MP4 · MOV</span>
                                 <input type="file" name="video_URL" id="video-input" accept="video/*" class="hidden"
                                     onchange="previewMedia(this,'video')">
-                            </label>
+                            </label> -->
                         </div>
                         <div id="media-preview" class="hidden"
                             style="margin-top:10px;border-radius:14px;overflow:hidden;border:1px solid var(--border);">
