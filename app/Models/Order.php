@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Order extends Model
 {
+    use HasFactory;
+
     protected $fillable=[
         'user_id',
         'date_of_order'
@@ -15,7 +19,7 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
-          public function product()
+          public function products()
     {
         return $this->hasMany(Product::class);
     }

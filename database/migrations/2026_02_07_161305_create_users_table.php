@@ -13,12 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('google_id')->nullable();
             $table->string('name');
-            $table->string( 'email')->unique();
+            $table->foreignId('role_id')->nullable()->constrained();
+            $table->enum('status',['artisan','client']);
+            $table->enum('condition',['blocke','deblocke'])->default('deblocke');
+            $table->string('email')->unique();
+            $table->float('solde')->default(0);
+            $table->integer('vues')->default(0);
+            $table->string('phone_number')->nullable();
+            $table->string('profile_photo')->nullable();
+            $table->string('localisation')->nullable();
+            $table->text('biographie')->nullable();
+            $table->boolean('isOnline')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('role_id')->constrained();
-            $table->foreignId('departement_id')->constrained();
             $table->rememberToken();
             $table->timestamps();
         });

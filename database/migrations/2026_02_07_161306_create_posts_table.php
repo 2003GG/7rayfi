@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('Title');
+            $table->string('title');
             $table->foreignId('user_id')->constrained();
-            $table->string('url')->nullable();
+            $table->text('description');
+            $table->string('photo_URL')->nullable();
+            $table->string('video_URL')->nullable();
+            $table->integer('report_count')->default(0);
+            $table->foreignId('category_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
